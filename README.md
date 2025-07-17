@@ -1,23 +1,70 @@
-# Portfolio Clone
+# Bhabesh Behera - Portfolio
 
-This project is an exact clone of [myportfoliome.vercel.app](https://myportfoliome.vercel.app/) built with Vite, React (JavaScript), and TailwindCSS.
+Computer Science & Engineering student specializing in Cybersecurity. Building secure, scalable applications and exploring the Web3 ecosystem.
 
-## Getting Started
+## 🌐 Live Demo
 
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-2. Start the development server:
-   ```bash
-   npm run dev
-   ```
+**[View Portfolio →](https://bhuvism.netlify.app/)**
 
-## Features
-- Fully responsive
-- Modern UI
-- All sections and content cloned from the reference site
+## 🛠️ Tech Stack
+
+- **Frontend:** React.js, TailwindCSS, Framer Motion
+- **Backend:** Node.js, Express.js, Python
+- **Blockchain:** Solidity, HardHat, Web3
+- **Database:** MongoDB, Firebase
+- **DevOps:** Docker, Git, Netlify
+- **Tools:** Postman, Figma, Kafka
+
+## 📁 Project Structure
+
+```
+Portfolio/
+├── public/
+│   ├── index.html
+│   ├── profile.jpg
+│   ├── odishadao.png
+│   └── bb-logo-*.png
+├── src/
+│   ├── components/
+│   │   ├── AnimatedProjectCard.jsx
+│   │   ├── FlipWords.jsx
+│   │   ├── FloatingDock.jsx
+│   │   ├── Footer.jsx
+│   │   ├── LinkPreview.jsx
+│   │   ├── Navbar.jsx
+│   │   ├── TechStackTrain.jsx
+│   │   └── ThemeToggleButton.jsx
+│   ├── pages/
+│   │   ├── About.jsx
+│   │   ├── Contact.jsx
+│   │   ├── Experience.jsx
+│   │   ├── Home.jsx
+│   │   └── Projects.jsx
+│   ├── utils/
+│   │   └── cn.js
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+├── netlify.toml
+├── package.json
+├── tailwind.config.js
+└── vite.config.js
+```
+
+## 🚀 Quick Start
+
+```bash
+git clone https://github.com/Bhuvilol/Portfolio.git
+npm install
+npm run dev
+```
+
+## 🔗 Connect
+
+- **GitHub:** [@Bhuvilol](https://github.com/Bhuvilol)
+- **Twitter:** [@0xbhuvi](https://x.com/0xbhuvi)
+- **Email:** bhabeshcse@gmail.com
 
 ---
 
-Replace images and content as needed for your own portfolio.
+*Built with React, TailwindCSS, and Framer Motion*
