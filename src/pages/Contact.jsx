@@ -1,14 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const Contact = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // Let Netlify handle the form submission
-  const handleSubmit = (e) => {
-    setIsSubmitting(true);
-    // Do not preventDefault, allow the browser to POST the form
-  };
-
   return (
     <section id="contact" className="py-12 px-6 pb-8">
       <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-black dark:text-white">Get in touch</h2>
@@ -18,7 +10,6 @@ const Contact = () => {
         method="POST" 
         data-netlify="true" 
         data-netlify-honeypot="bot-field" 
-        onSubmit={handleSubmit} 
         className="flex flex-col gap-6"
       >
         {/* Netlify Forms hidden input */}
@@ -47,14 +38,11 @@ const Contact = () => {
         />
         <button 
           type="submit" 
-          disabled={isSubmitting}
           className={`px-8 py-3 rounded-xl font-bold shadow-lg transition text-lg border border-gray-300 dark:border-gray-700 ${
-            isSubmitting 
-              ? 'bg-gray-400 dark:bg-gray-600 text-gray-200 cursor-not-allowed'
-              : 'bg-black dark:bg-white text-white dark:text-black hover:bg-gray-900 dark:hover:bg-gray-200'
+            'bg-black dark:bg-white text-white dark:text-black hover:bg-gray-900 dark:hover:bg-gray-200'
           }`}
         >
-          {isSubmitting ? 'Sending...' : 'Send Message'}
+          Send Message
         </button>
       </form>
     </section>

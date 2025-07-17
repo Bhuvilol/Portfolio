@@ -5,6 +5,10 @@
 [build.environment]
   NODE_VERSION = "18"
 
+[forms]
+  contact:
+    name = "contact" 
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
