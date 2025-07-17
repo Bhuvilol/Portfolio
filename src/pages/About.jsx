@@ -26,7 +26,7 @@ const About = () => {
             href={ODISHA_DAO_PREVIEW.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-extrabold text-xl md:text-2text-blue-60dark:text-blue-400ing-wide underline hover:no-underline transition-all duration-300over:text-blue-70rk:hover:text-blue-300"
+            className="font-extrabold text-xl md:text-2xl text-blue-600 dark:text-blue-400 underline hover:no-underline transition-all duration-300 hover:text-blue-700 dark:hover:text-blue-300"
             onMouseEnter={() => setShowPreview(true)}
             onMouseLeave={() => setShowPreview(false)}
             onMouseMove={handleMouseMove}
@@ -35,36 +35,41 @@ const About = () => {
           >
             @OdishaDAO
           </a>
-          {showPreview && (
-            <div
-              className="fixed z-50 pointer-events-none p-2 bg-gray-900 dark:bg-white border border-gray-200 dark:border-gray-600 rounded-xl shadow-2xl flex items-center justify-center"
-              style={{
-                left: `${mousePosition.x + 24}px`,
-                top: `${mousePosition.y + 24}px`,
-                maxWidth: '320px',
-                maxHeight: '200px',
-                backgroundColor: 'rgb(17, 24, 39)', // Dark gray/black for light theme
-              }}
-            >
-              <img
-                src={ODISHA_DAO_PREVIEW.image}
-                alt="OdishaDAO logo"
-                style={{
-                  maxWidth: '300px',
-                  maxHeight: '180px',
-                  width: 'auto',
-                  height: 'auto',
-                  borderRadius: '0.75rem',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.10)',
-                  objectFit: 'contain',
-                  display: 'block',
-                }}
-              />
-            </div>
-          )}
         </span>
         , I actively contribute to promoting the web3 ecosystem in Odisha by driving awareness, education, and real-world adoption of decentralized technologies.
       </p>
+
+      {/* Preview div moved outside p element */}
+      {showPreview && (
+        <div
+          className="fixed z-50 pointer-events-none p-2 bg-gray-900 dark:bg-white border border-gray-200 dark:border-gray-600 rounded-xl shadow-2xl flex items-center justify-center transition-all duration-300"
+          style={{
+            left: `${mousePosition.x + 24}px`,
+            top: `${mousePosition.y + 24}px`,
+            maxWidth: '320px',
+            maxHeight: '200px',
+            backgroundColor: 'rgb(17, 24, 39)',
+            pointerEvents: 'none',
+            position: 'fixed',
+          }}
+        >
+          <img
+            src={ODISHA_DAO_PREVIEW.image}
+            alt="OdishaDAO logo"
+            style={{
+              maxWidth: '300px',
+              maxHeight: '180px',
+              width: 'auto',
+              height: 'auto',
+              borderRadius: '0.75rem',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+              objectFit: 'contain',
+              display: 'block',
+            }}
+          />
+        </div>
+      )}
+
       <p className="text-lg text-gray-700 dark:text-gray-300">
         Currently, I'm focused on deepening my understanding of system-level security, expanding my creative scope, and contributing to projects that create real value.
       </p>

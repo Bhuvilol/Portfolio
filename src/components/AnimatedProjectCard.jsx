@@ -66,27 +66,31 @@ const AnimatedProjectCard = ({ project, className, size = 'medium', index, hover
       <AnimatePresence>
         {hoveredIndex === index && (
           <motion.span
-            className="absolute inset-0 h-full w-full bg-neutral-300 dark:bg-slate-700 block rounded-3xl"
+            className="absolute inset-0 h-full w-full bg-black/20 dark:bg-white/20 block rounded-3xl shadow-xl"
             layoutId="hoverBackground"
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             animate={{
               opacity: 1,
-              transition: { duration: 0.15 },
+              scale: 1,
+              transition: { duration: 0.38, ease: 'easeOut' },
             }}
             exit={{
               opacity: 0,
-              transition: { duration: 0.15, delay: 0.2 },
+              scale: 0.98,
+              transition: { duration: 0.28, ease: 'easeIn' },
             }}
           />
         )}
       </AnimatePresence>
       
-      <div className="relative h-full w-full rounded-3xl overflow-hidden bg-white dark:bg-gray-900 shadow-xl border border-gray-200 dark:border-gray-800 group-hover:shadow-2xl transition-all duration-500 z-20">
+      <div className="relative h-full w-full rounded-3xl overflow-hidden bg-white dark:bg-gray-900 shadow-xl border border-gray-200 dark:border-gray-800 group-hover:shadow-2xl transition-all duration-300 ease-in-out z-20">
         <div className="relative h-full">
-          <img 
+          <motion.img 
             src={project.image} 
             alt={`${project.title} demo`} 
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            className="w-full h-full object-cover"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent">
             <div className={cn("absolute bottom-0 left-0 right-0", contentClasses.container)}>
@@ -103,25 +107,42 @@ const AnimatedProjectCard = ({ project, className, size = 'medium', index, hover
                 {hoveredIndex === index && (
                   <motion.div 
                     className={cn("flex gap-2", contentClasses.buttonContainer)}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.2 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ 
+                      opacity: 1, 
+                      y: 0,
+                      transition: { 
+                        duration: 0.2,
+                        ease: "easeOut"
+                      }
+                    }}
+                    exit={{ 
+                      opacity: 0, 
+                      y: 20,
+                      transition: { 
+                        duration: 0.15,
+                        ease: "easeIn"
+                      }
+                    }}
                   >
-                    <button 
+                    <motion.button 
                       className="p-2 bg-white/25 backdrop-blur-md text-white rounded-lg border border-white/20 hover:bg-white/35 transition-all duration-200"
                       onClick={() => window.open('#', '_blank')}
                       title="Live Demo"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                     >
                       <HiLink className="w-4 h-4" />
-                    </button>
-                    <button 
+                    </motion.button>
+                    <motion.button 
                       className="p-2 bg-white/25 backdrop-blur-md text-white rounded-lg border border-white/20 hover:bg-white/35 transition-all duration-200"
                       onClick={() => window.open('#', '_blank')}
                       title="GitHub Repository"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                     >
                       <FaGithub className="w-4 h-4" />
-                    </button>
+                    </motion.button>
                   </motion.div>
                 )}
               </AnimatePresence>

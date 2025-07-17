@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaFileAlt, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaFileAlt, FaEnvelope, FaInstagram } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 
 const FloatingDock = () => {
@@ -34,6 +34,13 @@ const FloatingDock = () => {
       name: 'X',
       icon: <FaXTwitter className="w-6 h-6" />,
       url: 'https://x.com',
+      color: 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
+    },
+    {
+      id: 'instagram',
+      name: 'Instagram',
+      icon: <FaInstagram className="w-6 h-6" />,
+      url: 'https://instagram.com',
       color: 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
     }
   ];

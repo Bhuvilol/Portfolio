@@ -25,13 +25,13 @@ const TechStackTrain = () => {
   const gapBetweenTrains = 300; // Increased gap to prevent overlap between Docker and ReactJS
 
   return (
-    <section className="pt-8 pb-8 overflow-hidden">
+    <section className="pt-8 pb-8 overflow-hidden mt-20">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-8">
-          <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-2">
+        <div className="mb-8">
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-black dark:text-white text-left">
             Tech Stack
-          </h3>
-          <p className="text-gray-600 dark:text-gray-400">
+          </h2>
+          <p className="text-lg text-gray-700 dark:text-gray-300 mb-4 text-left">
             Technologies I work with
           </p>
         </div>
