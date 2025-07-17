@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import AnimatedProjectCard from '../components/AnimatedProjectCard';
 
 const projects = [
@@ -48,6 +49,8 @@ const ProjectHeader = () => (
 );
 
 const Projects = () => {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   return (
     <section id="projects" className="py-12 px-6 max-w-7xl mx-auto">
       <ProjectHeader />
@@ -60,6 +63,8 @@ const Projects = () => {
             size="large"
             minHeight="min-h-[220px]"
             index={0}
+            hoveredIndex={hoveredIndex}
+            onHover={setHoveredIndex}
           />
         </div>
         {/* Card 2: Tall, spans 2 rows */}
@@ -69,6 +74,8 @@ const Projects = () => {
             size="large"
             minHeight="min-h-[480px]"
             index={1}
+            hoveredIndex={hoveredIndex}
+            onHover={setHoveredIndex}
           />
         </div>
         {/* Card 3: Normal */}
@@ -78,6 +85,8 @@ const Projects = () => {
             size="medium"
             minHeight="min-h-[220px]"
             index={2}
+            hoveredIndex={hoveredIndex}
+            onHover={setHoveredIndex}
           />
         </div>
         {/* Card 4: Normal */}
@@ -87,6 +96,8 @@ const Projects = () => {
             size="medium"
             minHeight="min-h-[220px]"
             index={3}
+            hoveredIndex={hoveredIndex}
+            onHover={setHoveredIndex}
           />
         </div>
         {/* Card 5: Normal */}
@@ -96,6 +107,8 @@ const Projects = () => {
             size="medium"
             minHeight="min-h-[220px]"
             index={4}
+            hoveredIndex={hoveredIndex}
+            onHover={setHoveredIndex}
           />
         </div>
         {/* Card 6: Large, spans 2 columns in third row */}
@@ -105,6 +118,8 @@ const Projects = () => {
             size="large"
             minHeight="min-h-[220px]"
             index={5}
+            hoveredIndex={hoveredIndex}
+            onHover={setHoveredIndex}
           />
         </div>
       </div>
@@ -116,6 +131,9 @@ const Projects = () => {
             project={project}
             size="medium"
             minHeight="min-h-[220px]"
+            index={index}
+            hoveredIndex={hoveredIndex}
+            onHover={setHoveredIndex}
           />
         ))}
       </div>

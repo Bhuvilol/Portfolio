@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { HiLink } from 'react-icons/hi';
 import { FaGithub } from 'react-icons/fa';
 
-const AnimatedProjectCard = ({ project, className, size = 'medium', minHeight = 'min-h-[220px]', index }) => {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
+const AnimatedProjectCard = ({ project, className, size = 'medium', minHeight = 'min-h-[220px]', index, hoveredIndex, onHover, cursorPosition }) => {
+  const [localCursor, setLocalCursor] = useState({ x: 0, y: 0 });
+  
   const getSizeClasses = () => {
     switch (size) {
       case 'large':
@@ -49,37 +49,36 @@ const AnimatedProjectCard = ({ project, className, size = 'medium', minHeight = 
   };
 
   const contentClasses = getContentClasses();
+  const isHovered = hoveredIndex === index;
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setLocalCursor({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
+  };
 
   return (
     <div
       className={`relative block h-full w-full cursor-pointer p-4 group ${minHeight} ${getSizeClasses()} ${className || ''}`}
-      onMouseEnter={() => setHoveredIndex(index)}
-      onMouseLeave={() => setHoveredIndex(null)}
+      onMouseEnter={() => onHover(index)}
+      onMouseLeave={() => onHover(null)}
+      onMouseMove={handleMouseMove}
       onClick={() => project.liveDemo && window.open(project.liveDemo, '_blank')}
     >
-      {/* Hover background overlay - covers entire card area including padding */}
-      <AnimatePresence>
-        {hoveredIndex === index && (
-          <motion.span
-            className="absolute inset-0 h-full w-full bg-gray-400 dark:bg-white/40 block rounded-3xl z-10 pb-4"
-            style={{ 
-              height: 'calc(100% + 1rem)', 
-              bottom: '-1rem',
-              borderRadius: '1.5rem'
-            }}
-            layoutId="hoverBackground"
-            initial={{ opacity: 0 }}
-            animate={{
-              opacity: 1,
-              transition: { duration: 0.15 },
-            }}
-            exit={{
-              opacity: 0,
-              transition: { duration: 0.15, delay: 0.2 },
-            }}
-          />
-        )}
-      </AnimatePresence>
+      {/* Full card background that follows cursor */}
+      <motion.div
+        className="absolute bg-gray-600 dark:bg-white/40 rounded-3xl z-10 pointer-events-none"
+        style={{
+          inset: 0,
+          opacity: isHovered ? 0.9 : 0,
+          background: isHovered ? `radial-gradient(circle at ${localCursor.x}px ${localCursor.y}px, rgba(75, 85, 99, 0.9) 0%, rgba(75, 85, 99, 0.5) 50%, transparent 100%)` : 'transparent',
+        }}
+        transition={{ 
+          duration: 0.1
+        }}
+      />
       
       <div className="relative h-full w-full min-h-[220px] rounded-3xl bg-white dark:bg-gray-900 shadow-xl border border-gray-200 dark:border-gray-800 transition-all duration-300 ease-in-out z-20">
         <div className="relative h-full w-full overflow-hidden rounded-3xl">
@@ -89,7 +88,7 @@ const AnimatedProjectCard = ({ project, className, size = 'medium', minHeight = 
             className="w-full h-full object-cover rounded-3xl"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent">
-            <div className={`absolute bottom-0 left-0 right-0 ${contentClasses.container} transition-all duration-300 group-hover:-translate-y-10`}>
+            <div className={`absolute bottom-0 left-0 right-0 ${contentClasses.container} transition-all duration-300 ${isHovered ? '-translate-y-10' : ''}`}>
               <span className={`inline-block bg-white/25 backdrop-blur-md text-white font-semibold rounded-full mb-3 border border-white/20 ${contentClasses.badge}`}>
                 {project.category}
               </span>
@@ -100,7 +99,7 @@ const AnimatedProjectCard = ({ project, className, size = 'medium', minHeight = 
             
             {/* Icons positioned at bottom */}
             <div className="absolute bottom-0 left-0 right-0 p-6">
-              <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+              <div className={`flex gap-2 transition-all duration-300 transform ${isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <button 
                   className={`p-2 backdrop-blur-md text-white rounded-lg border border-white/20 transition-all duration-200 ${project.liveDemo ? 'bg-white/25 hover:bg-white/35' : 'bg-white/10 opacity-50 cursor-not-allowed'}`}
                   onClick={(e) => { 
