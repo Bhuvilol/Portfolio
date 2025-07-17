@@ -46,10 +46,37 @@ const FloatingDock = () => {
   ];
 
   const handleItemClick = (url) => {
+    // Validate URL to prevent open redirect attacks
+    const isValidUrl = (url) => {
+      try {
+        const urlObj = new URL(url);
+        // Allow only specific protocols and domains
+        const allowedProtocols = ['https:', 'http:', 'mailto:'];
+        const allowedDomains = [
+          'github.com',
+          'drive.google.com', 
+          'x.com',
+          'twitter.com',
+          'instagram.com',
+          'www.instagram.com'
+        ];
+        
+        return allowedProtocols.includes(urlObj.protocol) && 
+               (urlObj.protocol === 'mailto:' || 
+                allowedDomains.some(domain => urlObj.hostname.includes(domain)));
+      } catch {
+        return false;
+      }
+    };
+
+    if (!isValidUrl(url)) {
+      console.error('Invalid URL:', url);
+      return;
+    }
+
+    // Use window.open for all links to prevent XSS
     if (url.startsWith('mailto:')) {
-      window.location.href = url;
-    } else if (url.startsWith('/')) {
-      window.open(url, '_blank');
+      window.open(url, '_self');
     } else {
       window.open(url, '_blank');
     }

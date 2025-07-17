@@ -12,7 +12,17 @@ const FlipWords = ({ words = [] }) => {
 
   useEffect(() => {
     if (!words.length) return;
-    const currentWord = words[wordIndex];
+    
+    // Validate wordIndex to prevent object injection
+    const validWordIndex = Math.max(0, Math.min(wordIndex, words.length - 1));
+    const currentWord = words[validWordIndex];
+    
+    // Additional safety check
+    if (!currentWord || typeof currentWord !== 'string') {
+      console.error('Invalid word at index:', validWordIndex);
+      return;
+    }
+    
     let timeout;
 
     if (!isDeleting && displayed.length < currentWord.length) {
@@ -32,7 +42,11 @@ const FlipWords = ({ words = [] }) => {
       // Pause after deleting, then move to next word
       timeout = setTimeout(() => {
         setIsDeleting(false);
-        setWordIndex((prev) => (prev + 1) % words.length);
+        setWordIndex((prev) => {
+          const nextIndex = (prev + 1) % words.length;
+          // Ensure the index is within valid bounds
+          return Math.max(0, Math.min(nextIndex, words.length - 1));
+        });
       }, PAUSE_AFTER_DELETE);
     }
     return () => clearTimeout(timeout);
