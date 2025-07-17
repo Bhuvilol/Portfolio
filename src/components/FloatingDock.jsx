@@ -12,35 +12,35 @@ const FloatingDock = () => {
       id: 'github',
       name: 'GitHub',
       icon: <FaGithub className="w-6 h-6" />,
-      url: 'https://github.com',
+      url: 'https://github.com/Bhuvilol',
       color: 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
     },
     {
       id: 'resume',
       name: 'Resume',
       icon: <FaFileAlt className="w-6 h-6" />,
-      url: '/resume.pdf',
+      url: 'https://drive.google.com/file/d/1D_J0ma1FMdAYH1WXvwQQZb4v0yKLLSSI/view?usp=sharing',
       color: 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
     },
     {
       id: 'email',
       name: 'Email',
       icon: <FaEnvelope className="w-6 h-6" />,
-      url: 'mailto:your.email@example.com',
+      url: 'mailto:bhabeshcse@gmail.com',
       color: 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
     },
     {
       id: 'twitter',
       name: 'X',
       icon: <FaXTwitter className="w-6 h-6" />,
-      url: 'https://x.com',
+      url: 'https://x.com/0xbhuvi',
       color: 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
     },
     {
       id: 'instagram',
       name: 'Instagram',
       icon: <FaInstagram className="w-6 h-6" />,
-      url: 'https://instagram.com',
+      url: 'https://www.instagram.com/_machomoron/',
       color: 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
     }
   ];
@@ -49,7 +49,6 @@ const FloatingDock = () => {
     if (url.startsWith('mailto:')) {
       window.location.href = url;
     } else if (url.startsWith('/')) {
-      // Handle local files like resume
       window.open(url, '_blank');
     } else {
       window.open(url, '_blank');

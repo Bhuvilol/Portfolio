@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaReact, FaNodeJs, FaPython, FaJava, FaGitAlt, FaHardHat, FaFigma, FaDocker } from 'react-icons/fa';
-import { SiSolidity, SiFirebase, SiPostman, SiMongodb, SiTailwindcss, SiExpress } from 'react-icons/si';
+import { SiSolidity, SiFirebase, SiPostman, SiMongodb, SiTailwindcss, SiExpress, SiApachekafka } from 'react-icons/si';
 
 const TechStackTrain = () => {
   const techStack = [
@@ -18,17 +18,18 @@ const TechStackTrain = () => {
     { name: 'MongoDB', icon: <SiMongodb className="text-green-600" /> },
     { name: 'TailwindCSS', icon: <SiTailwindcss className="text-sky-400" /> },
     { name: 'Docker', icon: <FaDocker className="text-blue-500" /> },
+    { name: 'Kafka', icon: <SiApachekafka className="text-orange-500" /> },
   ];
 
   // Calculate the total width of one train
   const trainWidth = techStack.length * 88; // 80px min-width + 8px gap
-  const gapBetweenTrains = 300; // Increased gap to prevent overlap between Docker and ReactJS
+  const gapBetweenTrains = 350; // Increased gap to prevent overlap between Docker and ReactJS
 
   return (
     <section className="pt-8 pb-8 overflow-hidden mt-20">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-black dark:text-white text-left">
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-black dark:text-white text-left drop-shadow-xl">
             Tech Stack
           </h2>
           <p className="text-lg text-gray-700 dark:text-gray-300 mb-4 text-left">

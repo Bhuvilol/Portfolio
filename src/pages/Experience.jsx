@@ -2,7 +2,7 @@ import React from 'react';
 
 const Experience = () => (
   <section id="achievements" className="py-12 px-6">
-    <h2 className="text-3xl md:text-4xl font-extrabold mb-10 text-black dark:text-white">Achievements</h2>
+    <h2 className="text-3xl md:text-4xl font-extrabold mb-10 text-black dark:text-white drop-shadow-xl">Achievements</h2>
     <ul className="space-y-4 text-gray-700 dark:text-gray-300">
       <li className="flex items-start">
         <span className="text-gray-500 dark:text-gray-400 mr-3 mt-1">•</span>

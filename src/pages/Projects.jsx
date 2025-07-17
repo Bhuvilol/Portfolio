@@ -54,7 +54,7 @@ const projects = [
 
 const ProjectHeader = () => (
   <div className="col-span-full mb-12">
-    <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-black dark:text-white">My Projects</h2>
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-black dark:text-white drop-shadow-xl">My Projects</h2>
     <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl leading-relaxed">
       A collection of projects showcasing my journey in software development, from full-stack applications to AI-powered solutions.
     </p>

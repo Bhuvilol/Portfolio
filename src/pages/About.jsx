@@ -15,7 +15,7 @@ const About = () => {
 
   return (
     <section id="about" className="py-12 px-6 relative">
-      <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-black dark:text-white">About</h2>
+      <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-black dark:text-white drop-shadow-xl">About</h2>
       <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
         I'm Bhabesh Behera, a 22-year-old Computer Science & Engineering student specializing in Cybersecurity. My interests lie at the intersection of secure systems, real-world problem solving, and thoughtful product-building. I enjoy exploring how technology can be applied meaningfully, whether through independent experiments or collaborative initiatives.
       </p>

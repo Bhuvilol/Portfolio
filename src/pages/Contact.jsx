@@ -34,7 +34,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-12 px-6 pb-8">
-      <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-black dark:text-white">Get in touch</h2>
+      <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-black dark:text-white drop-shadow-xl">Get in touch</h2>
       <p className="mb-8 text-gray-700 dark:text-gray-300 text-lg">Whether it's a freelance gig, a collaboration, a full-time opportunity, or you just want to say hi—I'm always excited to connect with people who love building meaningful things. Drop a message, and I'll get back to you as soon as I can!</p>
       
       {submitStatus === 'success' && (
