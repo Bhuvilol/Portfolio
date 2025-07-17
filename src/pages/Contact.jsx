@@ -2,52 +2,17 @@ import React, { useState } from 'react';
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // Let Netlify handle the form submission
+  const handleSubmit = (e) => {
     setIsSubmitting(true);
-    setSubmitStatus(null);
-
-    // Netlify Forms will handle the submission, but for instant feedback:
-    const formData = new FormData(e.target);
-    const data = new URLSearchParams();
-    for (const pair of formData) {
-      data.append(pair[0], pair[1]);
-    }
-    try {
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: data.toString(),
-      });
-      if (response.ok) {
-        setSubmitStatus('success');
-        e.target.reset();
-      } else {
-        setSubmitStatus('error');
-      }
-    } catch (error) {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Do not preventDefault, allow the browser to POST the form
   };
 
   return (
     <section id="contact" className="py-12 px-6 pb-8">
       <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-black dark:text-white">Get in touch</h2>
       <p className="mb-8 text-gray-700 dark:text-gray-300 text-lg">Whether it's a freelance gig, a collaboration, a full-time opportunity, or you just want to say hi—I'm always excited to connect with people who love building meaningful things. Drop a message, and I'll get back to you as soon as I can!</p>
-      {submitStatus === 'success' && (
-        <div className="mb-6 bg-green-100 dark:bg-green-900 border border-green-400 dark:border-green-700 text-green-700 dark:text-green-300 rounded-lg p-4">
-          Thank you for your message! I'll get back to you soon.
-        </div>
-      )}
-      {submitStatus === 'error' && (
-        <div className="mb-6 p-4 bg-red-100 dark:bg-red-900 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-300 rounded-lg">
-          Something went wrong. Please try again or contact me directly.
-        </div>
-      )}
       <form 
         name="contact" 
         method="POST" 
