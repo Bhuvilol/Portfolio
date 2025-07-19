@@ -2,11 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Browser-specific fixes for consistent rendering */
+* {
+  box-sizing: border-box;
+}
+
 html {
   transition: background-color 0.5s, color 0.5s;
+  /* Ensure consistent viewport height calculation */
+  height: 100%;
 }
+
 body, #root, .min-h-screen {
   transition: background-color 0.5s, color 0.5s;
+  /* Ensure consistent height calculation */
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
+}
+
+/* Fix for Edge/Chrome differences */
+@supports (-webkit-appearance: none) {
+  /* Chrome/Safari specific */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Edge-specific fixes */
+@supports (-ms-ime-align: auto) {
+  /* Edge specific */
+  body {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+  
+  /* Fix for Edge flexbox issues */
+  .flex {
+    display: -ms-flexbox;
+    display: flex;
+  }
+  
+  .flex-col {
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  
+  .items-center {
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  
+  .justify-start {
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+  }
+}
+
+/* Ensure consistent spacing */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
 }
 
 @keyframes pulse-slow {

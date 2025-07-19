@@ -3,7 +3,7 @@ import FlipWords from '../components/FlipWords';
 import { BackgroundLines } from '../components/ui/background-lines';
 
 const Home = () => (
-  <BackgroundLines className="h-[90vh] flex flex-col justify-start items-center pt-12 pb-0">
+  <BackgroundLines className="h-[70vh] flex flex-col justify-start items-center pt-12 pb-0">
     <div className="relative z-20 flex flex-col items-center">
       <img src="/profile.jpg" alt="Bhabesh Behera" className="w-48 h-48 rounded-full border-4 border-gray-300 dark:border-gray-700 mb-8 shadow-xl object-cover relative z-30" />
       <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-center leading-tight drop-shadow-xl relative z-20">Hi, I'm Bhabesh Behera.<br />
@@ -14,7 +14,7 @@ const Home = () => (
       <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6 text-center max-w-2xl font-medium relative z-20">AI might take my job, but it'll choke on my spaghetti code first.</p>
       <a 
         href="#contact" 
-        className="inline-block px-8 py-3 bg-black dark:bg-white text-white dark:text-black rounded-xl font-bold shadow-lg hover:bg-gray-900 dark:hover:bg-gray-200 transition mb-4 text-lg border border-gray-300 dark:border-gray-700 relative z-20"
+        className="inline-block px-8 py-3 bg-black dark:bg-white text-white dark:text-black rounded-xl font-bold shadow-lg hover:bg-gray-900 dark:hover:bg-gray-200 transition mb-2 text-lg border border-gray-300 dark:border-gray-700 relative z-20"
         onClick={(e) => {
           e.preventDefault();
           document.getElementById('contact').scrollIntoView({ 
