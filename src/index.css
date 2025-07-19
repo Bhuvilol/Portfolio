@@ -23,3 +23,102 @@ body, #root, .min-h-screen {
     opacity: 0;
   }
 }
+
+/* Custom animations for wave effect */
+@keyframes wave-glow {
+  0% {
+    opacity: 0.3;
+    stroke-width: 1;
+  }
+  50% {
+    opacity: 0.8;
+    stroke-width: 2.5;
+  }
+  100% {
+    opacity: 0.3;
+    stroke-width: 1;
+  }
+}
+
+@keyframes wave-flow {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 100;
+  }
+}
+
+@keyframes center-pulse {
+  0% {
+    opacity: 0.2;
+    r: 80;
+  }
+  50% {
+    opacity: 0.5;
+    r: 120;
+  }
+  100% {
+    opacity: 0.2;
+    r: 80;
+  }
+}
+
+/* New animations for emerging beams */
+@keyframes emerge-beam {
+  0% {
+    opacity: 0;
+    stroke-width: 1;
+    transform: scale(0.3);
+  }
+  20% {
+    opacity: 0.8;
+    stroke-width: 3;
+    transform: scale(0.8);
+  }
+  60% {
+    opacity: 0.6;
+    stroke-width: 2.5;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    stroke-width: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+.animate-wave-glow {
+  animation: wave-glow 3s ease-in-out infinite;
+}
+
+.animate-wave-flow {
+  animation: wave-flow 4s linear infinite;
+}
+
+.animate-center-pulse {
+  animation: center-pulse 2s ease-in-out infinite;
+}
+
+.animate-emerge-beam {
+  animation: emerge-beam 2.5s ease-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 1.5s ease-in-out infinite;
+}
