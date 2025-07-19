@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { HiLink } from 'react-icons/hi';
+import { HiDownload } from 'react-icons/hi';
 import { FaGithub } from 'react-icons/fa';
 
-const AnimatedProjectCard = ({ project, className, size = 'medium', minHeight = 'min-h-[220px]', index, hoveredIndex, onHover, cursorPosition }) => {
+const AnimatedProjectCard = ({ project, className, size = 'medium', minHeight = 'min-h-[220px]', index, hoveredIndex, onHover, cursorPosition, onClick }) => {
   const [localCursor, setLocalCursor] = useState({ x: 0, y: 0 });
   
   const getSizeClasses = () => {
@@ -65,7 +66,7 @@ const AnimatedProjectCard = ({ project, className, size = 'medium', minHeight = 
       onMouseEnter={() => onHover(index)}
       onMouseLeave={() => onHover(null)}
       onMouseMove={handleMouseMove}
-      onClick={() => project.liveDemo && window.open(project.liveDemo, '_blank')}
+      onClick={onClick ? () => onClick(project) : () => project.liveDemo && window.open(project.liveDemo, '_blank')}
     >
       {/* Full card background that follows cursor */}
       <motion.div
@@ -110,7 +111,11 @@ const AnimatedProjectCard = ({ project, className, size = 'medium', minHeight = 
                   }}
                   title={project.liveDemo ? "Live Demo" : "No live demo available"}
                 >
-                  <HiLink className="w-4 h-4" />
+                  {project.title === 'Genz-Hunterz' ? (
+                    <HiDownload className="w-4 h-4" />
+                  ) : (
+                    <HiLink className="w-4 h-4" />
+                  )}
                 </button>
                 <button 
                   className={`p-2 backdrop-blur-md text-white rounded-lg border border-white/20 transition-all duration-200 ${project.github ? 'bg-white/25 hover:bg-white/35' : 'bg-white/10 opacity-50 cursor-not-allowed'}`}

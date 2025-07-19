@@ -9,7 +9,7 @@ const Home = () => (
         <FlipWords words={["Software Engineer", "Web3 Builder", "Full-Stack Developer", "Security Analyst"]} />
       </span>
     </h1>
-    <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6 text-center max-w-2xl font-medium">Relentless self-taught developer, passionate about crafting minimalistic solutions, and driven to grow in tech.</p>
+    <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6 text-center max-w-2xl font-medium">AI might take my job, but it’ll choke on my spaghetti code first.</p>
     <a 
       href="#contact" 
       className="inline-block px-8 py-3 bg-black dark:bg-white text-white dark:text-black rounded-xl font-bold shadow-lg hover:bg-gray-900 dark:hover:bg-gray-200 transition mb-6 text-lg border border-gray-300 dark:border-gray-700"

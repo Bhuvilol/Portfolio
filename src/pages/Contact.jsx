@@ -35,7 +35,10 @@ const Contact = () => {
   return (
     <section id="contact" className="py-12 px-6 pb-8">
       <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-black dark:text-white drop-shadow-xl">Get in touch</h2>
-      <p className="mb-8 text-gray-700 dark:text-gray-300 text-lg">Whether it's a freelance gig, a collaboration, a full-time opportunity, or you just want to say hi—I'm always excited to connect with people who love building meaningful things. Drop a message, and I'll get back to you as soon as I can!</p>
+      <p className="mb-8 text-gray-700 dark:text-gray-300 text-lg">Whether you're offering a gig, a collab, or just want to say “Hey hacker man!”, I’m all ears (and eyes, and keyboards).
+
+Drop your message below. I promise to reply faster than npm breaks after an update.
+      </p>
       
       {submitStatus === 'success' && (
         <div className="mb-6 bg-green-100 dark:bg-green-900 border border-green-400 dark:border-green-700 text-green-700 dark:text-green-300 rounded-lg p-4">         Thank you for your message! I'll get back to you soon.
