@@ -3,7 +3,7 @@ import FlipWords from '../components/FlipWords';
 import { BackgroundLines } from '../components/ui/background-lines';
 
 const Home = () => (
-  <BackgroundLines className="h-[70vh] flex flex-col justify-start items-center pt-12 pb-0">
+  <BackgroundLines className="flex flex-col justify-start items-center pt-12 pb-0 mb-40">
     <div className="relative z-20 flex flex-col items-center">
       <img src="/profile.jpg" alt="Bhabesh Behera" className="w-48 h-48 rounded-full border-4 border-gray-300 dark:border-gray-700 mb-8 shadow-xl object-cover relative z-30" />
       <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-center leading-tight drop-shadow-xl relative z-20">Hi, I'm Bhabesh Behera.<br />
@@ -32,4 +32,4 @@ const Home = () => (
   </BackgroundLines>
 );
 
-export default Home; 
+export default Home;

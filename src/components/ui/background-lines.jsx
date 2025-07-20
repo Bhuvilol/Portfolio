@@ -67,10 +67,36 @@ export function BackgroundLines({ children, className = "" }) {
     "#604483",
   ];
 
+  // Add a secure random integer generator
+  function secureRandomInt(max) {
+    const array = new Uint32Array(1);
+    window.crypto.getRandomValues(array);
+    return array[0] % max;
+  }
+
   return (
-    <div className={`relative overflow-hidden ${className}`}>
+    <div
+      className={`relative overflow-hidden pt-24 ${className}`}
+      style={{
+        display: "block",
+        position: "relative",
+        margin: 0,
+        padding: 0,
+        paddingTop: "6rem", // Add top padding to lower the section
+      }}
+    >
       {/* Animated background lines */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          zIndex: 0,
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          left: 0,
+          top: 0,
+        }}
+      >
         <motion.svg
           viewBox="0 0 1440 900"
           fill="none"
@@ -79,6 +105,14 @@ export function BackgroundLines({ children, className = "" }) {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
           className="absolute inset-0 w-full h-full"
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            left: 0,
+            top: 0,
+            pointerEvents: "none",
+          }}
         >
           {/* Center glow effect */}
           <motion.circle
@@ -111,7 +145,7 @@ export function BackgroundLines({ children, className = "" }) {
                 ease: "linear",
                 repeat: Infinity,
                 repeatType: "loop",
-                delay: Math.floor(Math.random() * 3),
+                delay: secureRandomInt(3),
                 repeatDelay: Math.floor(Math.random() * 2 + 1),
               }}
               key={`path-first-${idx}`}
@@ -140,11 +174,9 @@ export function BackgroundLines({ children, className = "" }) {
           ))}
         </motion.svg>
       </div>
-      
-      {/* Content */}
-      <div className="relative z-10">
-        {children}
-      </div>
+
+      {/* Children content */}
+      <div className="relative">{children}</div>
     </div>
   );
-} 
+}
