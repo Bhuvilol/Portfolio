@@ -2,7 +2,7 @@
 
 Computer Science & Engineering student specializing in Cybersecurity. Building secure, scalable applications and exploring the Web3 ecosystem.
 
-## 🌐 Live Demo
+## 🌐 Live Link
 
 **[View Portfolio →](https://bhuvism.netlify.app/)**
 
