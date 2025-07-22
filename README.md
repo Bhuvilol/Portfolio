@@ -20,10 +20,6 @@ Computer Science & Engineering student specializing in Cybersecurity. Building s
 ```
 Portfolio/
 ├── public/
-│   ├── index.html
-│   ├── profile.jpg
-│   ├── odishadao.png
-│   └── bb-logo-*.png
 ├── src/
 │   ├── components/
 │   │   ├── AnimatedProjectCard.jsx
