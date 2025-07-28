@@ -46,11 +46,9 @@ const FloatingDock = () => {
   ];
 
   const handleItemClick = (url) => {
-    // Validate URL to prevent open redirect attacks
     const isValidUrl = (url) => {
       try {
         const urlObj = new URL(url);
-        // Allow only specific protocols and domains
         const allowedProtocols = ['https:', 'http:', 'mailto:'];
         const allowedDomains = [
           'github.com',
@@ -74,7 +72,6 @@ const FloatingDock = () => {
       return;
     }
 
-    // Use window.open for all links to prevent XSS
     if (url.startsWith('mailto:')) {
       window.open(url, '_self');
     } else {

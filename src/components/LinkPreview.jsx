@@ -25,7 +25,6 @@ const LinkPreview = ({
     setShowPreview(false);
   };
 
-  // Calculate preview position to avoid going off-screen
   useEffect(() => {
     if (showPreview && linkRef.current) {
       const rect = linkRef.current.getBoundingClientRect();
@@ -35,17 +34,14 @@ const LinkPreview = ({
       let x = mousePosition.x + 16;
       let y = mousePosition.y + 16;
       
-      // Adjust if preview would go off the right edge
       if (x + 320 > windowWidth) {
-        x = mousePosition.x - 336; // 320px width + 16px gap
+        x = mousePosition.x - 336; 
       }
       
-      // Adjust if preview would go off the bottom edge
       if (y + 200 > windowHeight) {
-        y = mousePosition.y - 216; // 200px height + 16px gap
+        y = mousePosition.y - 216; 
       }
       
-      // Ensure preview doesn't go off the left or top edges
       x = Math.max(16, x);
       y = Math.max(16, y);
       
