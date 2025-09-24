@@ -19,7 +19,7 @@ const FloatingDock = () => {
       id: 'resume',
       name: 'Resume',
       icon: <FaFileAlt className="w-6 h-6" />,
-      url: 'https://drive.google.com/file/d/1DjUFTfW00p2VYCs71nhM5-idRy2Cq6C4/view?usp=sharing',
+      url: 'https://drive.google.com/file/d/1Gwxy5HHKSwrNUv2az55iD0L3JAKV29WE/view?usp=sharing',
       color: 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
     },
     {
