@@ -2,14 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaReact, FaNodeJs, FaPython, FaJava, FaGitAlt, FaHardHat, FaFigma, FaDocker } from 'react-icons/fa';
 import { SiSolidity, SiFirebase, SiPostman, SiMongodb, SiTailwindcss, SiExpress, SiApachekafka } from 'react-icons/si';
+import SectionHeading from './SectionHeading';
 
 const TechStackTrain = () => {
   const techStack = [
     { name: 'ReactJS', icon: <FaReact className="text-sky-500" /> },
-    { name: 'ExpressJS', icon: <SiExpress className="text-gray-800 dark:text-gray-200" /> },
-    { name: 'Solidity', icon: <SiSolidity className="text-gray-700 dark:text-gray-300" /> },
-    { name: 'Python', icon: <FaPython className="text-yellow-500 dark:text-yellow-400" /> },
-    { name: 'Java', icon: <FaJava className="text-red-600" /> },
+    { name: 'ExpressJS', icon: <SiExpress className="text-hacker-text" /> },
+    { name: 'Solidity', icon: <SiSolidity className="text-hacker-muted" /> },
+    { name: 'Python', icon: <FaPython className="text-yellow-500" /> },
+    { name: 'Java', icon: <FaJava className="text-red-500" /> },
     { name: 'Git', icon: <FaGitAlt className="text-orange-500" /> },
     { name: 'HardHat', icon: <FaHardHat className="text-yellow-600" /> },
     { name: 'Figma', icon: <FaFigma className="text-pink-500" /> },
@@ -21,18 +22,15 @@ const TechStackTrain = () => {
     { name: 'Kafka', icon: <SiApachekafka className="text-orange-500" /> },
   ];
 
-  // Calculate the total width of one train
-  const trainWidth = techStack.length * 88; // 80px min-width + 8px gap
-  const gapBetweenTrains = 350; // Increased gap to prevent overlap between Docker and ReactJS
+  const trainWidth = techStack.length * 88;
+  const gapBetweenTrains = 350;
 
   return (
     <section className="pt-8 pb-8 overflow-hidden mt-20">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-black dark:text-white text-left drop-shadow-xl">
-            Tech Stack
-          </h2>
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-4 text-left">
+          <SectionHeading>tech_stack</SectionHeading>
+          <p className="text-sm text-hacker-muted mb-4 text-left font-mono">
             Technologies I work with
           </p>
         </div>
@@ -53,12 +51,12 @@ const TechStackTrain = () => {
             {techStack.map((tech, index) => (
               <div
                 key={`first-${index}`}
-                className="flex flex-col items-center gap-2 min-w-[80px]"
+                className="flex flex-col items-center gap-2 min-w-[80px] group"
               >
-                <div className="w-12 h-12 bg-white dark:bg-gray-800 rounded-xl shadow-lg flex items-center justify-center text-2xl border border-gray-200 dark:border-gray-700">
+                <div className="w-12 h-12 bg-transparent rounded-lg flex items-center justify-center text-2xl border border-hacker-border group-hover:border-hacker-green/50 transition-colors">
                   {tech.icon}
                 </div>
-                <span className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">
+                <span className="text-xs font-mono text-hacker-muted text-center group-hover:text-hacker-green transition-colors">
                   {tech.name}
                 </span>
               </div>
@@ -80,12 +78,12 @@ const TechStackTrain = () => {
             {techStack.map((tech, index) => (
               <div
                 key={`second-${index}`}
-                className="flex flex-col items-center gap-2 min-w-[80px]"
+                className="flex flex-col items-center gap-2 min-w-[80px] group"
               >
-                <div className="w-12 h-12 bg-white dark:bg-gray-800 rounded-xl shadow-lg flex items-center justify-center text-2xl border border-gray-200 dark:border-gray-700">
+                <div className="w-12 h-12 bg-transparent rounded-lg flex items-center justify-center text-2xl border border-hacker-border group-hover:border-hacker-green/50 transition-colors">
                   {tech.icon}
                 </div>
-                <span className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">
+                <span className="text-xs font-mono text-hacker-muted text-center group-hover:text-hacker-green transition-colors">
                   {tech.name}
                 </span>
               </div>

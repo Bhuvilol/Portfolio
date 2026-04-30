@@ -4,6 +4,7 @@ import { HiLink } from 'react-icons/hi';
 import { HiDownload } from 'react-icons/hi';
 import { FaGithub } from 'react-icons/fa';
 import AnimatedProjectCard from '../components/AnimatedProjectCard';
+import SectionHeading from '../components/SectionHeading';
 
 const projects = [
   {
@@ -60,8 +61,8 @@ const projects = [
 
 const ProjectHeader = () => (
   <div className="col-span-full mb-12">
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-black dark:text-white drop-shadow-xl">My Projects</h2>
-    <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl leading-relaxed">
+    <SectionHeading>projects</SectionHeading>
+    <p className="text-base text-hacker-muted max-w-3xl leading-relaxed">
       A collection of projects showcasing my journey in software development, from full-stack applications to AI-powered solutions.
     </p>
   </div>
@@ -70,24 +71,14 @@ const ProjectHeader = () => (
 // Custom scrollbar styles for modal
 const modalScrollbarStyles = `
   .modal-scrollbar::-webkit-scrollbar {
-    width: 14px;
+    width: 6px;
   }
   .modal-scrollbar::-webkit-scrollbar-thumb {
-    background: #2563eb; /* blue-600 */
-    border-radius: 8px;
-    border: 3px solid #e0e7ef;
-    min-height: 40px;
-    transition: background 0.2s;
+    background: rgba(0, 255, 136, 0.2);
+    border-radius: 3px;
   }
   .modal-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #1d4ed8; /* blue-700 */
-  }
-  .dark .modal-scrollbar::-webkit-scrollbar-thumb {
-    background: #60a5fa; /* blue-400 */
-    border: 3px solid #1e293b;
-  }
-  .dark .modal-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #3b82f6; /* blue-500 */
+    background: rgba(0, 255, 136, 0.4);
   }
   .modal-scrollbar::-webkit-scrollbar-track {
     background: transparent;
@@ -104,7 +95,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             {/* Overlay */}
             <motion.div
-              className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -113,7 +104,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
             />
             {/* Modal Box */}
             <motion.div
-              className="relative w-full max-w-md aspect-square mx-4 sm:mx-0 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-0 overflow-hidden flex flex-col"
+              className="relative w-full max-w-md aspect-square mx-4 sm:mx-0 rounded-lg border border-hacker-border bg-hacker-surface p-0 overflow-hidden flex flex-col"
               style={{ maxHeight: '80vh', minHeight: '350px' }}
               initial={{ y: 40, scale: 0.8, opacity: 0 }}
               animate={{ y: 0, scale: 1, opacity: 1 }}
@@ -121,20 +112,20 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
               transition={{ type: 'spring', stiffness: 400, damping: 30 }}
             >
               <button
-                className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-red-500 hover:text-white hover:scale-110 transition-all text-2xl"
+                className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded border border-hacker-border text-hacker-muted hover:border-hacker-red hover:text-hacker-red transition-all text-lg font-mono"
                 onClick={onClose}
                 aria-label="Close"
               >
-                &times;
+                ×
               </button>
               <div className="p-6 pt-8 sm:p-8 sm:pt-12 flex flex-col h-full">
                 <div className="shrink-0">
-                  <h3 className="text-2xl font-extrabold mb-3 text-black dark:text-white drop-shadow-xl text-center">{project.title}</h3>
-                  <div className="relative w-full h-32 mb-4">
-                    <img src={project.image} alt={project.title} className="w-full h-full object-cover rounded-xl shadow-lg border border-gray-200 dark:border-gray-800" />
-                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-6 z-10">
+                  <h3 className="font-mono text-xl font-bold mb-3 text-hacker-green text-center">{project.title}</h3>
+                    <div className="relative w-full h-32 mb-4">
+                    <img src={project.image} alt={project.title} className="w-full h-full object-cover rounded-lg border border-hacker-border" />
+                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-4 z-10">
                       {project.liveDemo && (
-                        <a href={project.liveDemo} target="_blank" rel="noopener noreferrer" aria-label="Live Demo" className="mx-1 p-3 bg-blue-600/40 backdrop-blur-md border border-blue-200/40 dark:border-blue-900/40 text-white rounded-xl shadow-lg ring-2 ring-blue-400/80 ring-offset-2 ring-offset-blue-200/30 transition-all flex items-center justify-center group">
+                        <a href={project.liveDemo} target="_blank" rel="noopener noreferrer" aria-label="Live Demo" className="mx-1 p-2.5 bg-hacker-surface/80 backdrop-blur-md border border-hacker-green/40 text-hacker-green rounded-lg transition-all flex items-center justify-center group hover:bg-hacker-green/10">
                           {project.title === 'Genz-Hunterz' ? (
                             <HiDownload className="w-7 h-7 group-hover:scale-110 group-active:scale-95 transition-transform" />
                           ) : (
@@ -143,7 +134,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                         </a>
                       )}
                       {project.github && (
-                        <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="mx-1 p-3 bg-gray-800/40 backdrop-blur-md border border-gray-200/40 dark:border-gray-900/40 text-white rounded-xl shadow-lg ring-2 ring-slate-200/80 ring-offset-2 ring-offset-gray-200/30 transition-all flex items-center justify-center group">
+                        <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="mx-1 p-2.5 bg-hacker-surface/80 backdrop-blur-md border border-hacker-border text-hacker-text rounded-lg transition-all flex items-center justify-center group hover:border-hacker-green hover:text-hacker-green">
                           <FaGithub className="w-7 h-7 group-hover:scale-110 group-active:scale-95 transition-transform" />
                         </a>
                       )}
@@ -152,12 +143,12 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                 </div>
                 <div className="flex-1 min-h-0 overflow-y-auto modal-scrollbar">
                   <div className="mb-4">
-                    <span className="font-semibold text-black dark:text-white block mb-1">Tech Stack:</span>
+                    <span className="font-mono text-sm text-hacker-green block mb-2">[+] Tech Stack:</span>
                     <div className="flex flex-wrap items-center gap-2">
                       {project.techStack && project.techStack.split('•').map((tech, idx) => (
                         <span
                           key={idx}
-                          className="inline-block px-3 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-full text-xs font-medium border border-gray-300 dark:border-gray-700"
+                          className="inline-block px-2.5 py-1 bg-hacker-bg border border-hacker-border text-hacker-text rounded text-xs font-mono"
                         >
                           {tech.trim()}
                         </span>
@@ -165,9 +156,9 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                     </div>
                   </div>
                   <div className="mb-1">
-                    <span className="font-semibold text-black dark:text-white">Description:</span>
+                    <span className="font-mono text-sm text-hacker-green">[+] Description:</span>
                   </div>
-                  <div className="prose dark:prose-invert mb-4 whitespace-pre-line text-gray-800 dark:text-gray-200 max-w-none text-base leading-relaxed">
+                  <div className="mb-4 whitespace-pre-line text-hacker-text max-w-none text-sm leading-relaxed">
                     {project.description}
                   </div>
                 </div>

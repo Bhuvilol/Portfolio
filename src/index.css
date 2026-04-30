@@ -2,201 +2,81 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Browser-specific fixes for consistent rendering */
+/* ── Base Reset ──────────────────────────────────────────────── */
 * {
   box-sizing: border-box;
 }
 
 html {
-  transition: background-color 0.5s, color 0.5s;
-  /* Ensure consistent viewport height calculation */
   height: 100%;
+  background-color: #0a0a0f;
+  color: #f0f0f5;
 }
 
 body, #root, .min-h-screen {
-  transition: background-color 0.5s, color 0.5s;
-  /* Ensure consistent height calculation */
   min-height: 100vh;
-  min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
+  min-height: 100dvh;
+  background-color: #0a0a0f;
 }
 
-/* Fix for Edge/Chrome differences */
-@supports (-webkit-appearance: none) {
-  /* Chrome/Safari specific */
-  body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
-/* Edge-specific fixes */
-@supports (-ms-ime-align: auto) {
-  /* Edge specific */
-  body {
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-  }
-  
-  /* Fix for Edge flexbox issues */
-  .flex {
-    display: -ms-flexbox;
-    display: flex;
-  }
-  
-  .flex-col {
-    -ms-flex-direction: column;
-    flex-direction: column;
-  }
-  
-  .items-center {
-    -ms-flex-align: center;
-    align-items: center;
-  }
-  
-  .justify-start {
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-  }
+/* ── Hacker Theme: Force dark ────────────────────────────────── */
+html {
+  color-scheme: dark;
 }
 
-/* Ensure consistent spacing */
-.flex {
-  display: flex;
+/* ── Subtle background grid ──────────────────────────────────── */
+.hacker-grid {
+  background-image: 
+    linear-gradient(rgba(0, 255, 153, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 153, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
-.flex-col {
-  flex-direction: column;
+/* ── Scanline overlay ────────────────────────────────────────── */
+.scanlines::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
 }
 
-.items-center {
-  align-items: center;
+/* ── Green glow utility ──────────────────────────────────────── */
+.glow-green {
+  box-shadow: 0 0 20px rgba(0, 255, 153, 0.15), 0 0 40px rgba(0, 255, 153, 0.05);
 }
 
-.justify-start {
-  justify-content: flex-start;
+.glow-green-sm {
+  box-shadow: 0 0 10px rgba(0, 255, 153, 0.1);
 }
 
-@keyframes pulse-slow {
-  0% {
-    transform: scale(1);
-    opacity: 0.4;
-  }
-  50% {
-    transform: scale(1.5);
-    opacity: 0.1;
-  }
-  100% {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
-
-/* Custom animations for wave effect */
-@keyframes wave-glow {
-  0% {
-    opacity: 0.3;
-    stroke-width: 1;
-  }
-  50% {
-    opacity: 0.8;
-    stroke-width: 2.5;
-  }
-  100% {
-    opacity: 0.3;
-    stroke-width: 1;
-  }
-}
-
-@keyframes wave-flow {
-  0% {
-    stroke-dashoffset: 0;
-  }
-  100% {
-    stroke-dashoffset: 100;
-  }
-}
-
-@keyframes center-pulse {
-  0% {
-    opacity: 0.2;
-    r: 80;
-  }
-  50% {
-    opacity: 0.5;
-    r: 120;
-  }
-  100% {
-    opacity: 0.2;
-    r: 80;
-  }
-}
-
-/* New animations for emerging beams */
-@keyframes emerge-beam {
-  0% {
-    opacity: 0;
-    stroke-width: 1;
-    transform: scale(0.3);
-  }
-  20% {
-    opacity: 0.8;
-    stroke-width: 3;
-    transform: scale(0.8);
-  }
-  60% {
-    opacity: 0.6;
-    stroke-width: 2.5;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    stroke-width: 1;
-    transform: scale(1.2);
-  }
-}
-
-@keyframes sparkle {
-  0% {
-    opacity: 0;
-    transform: scale(0);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.5);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0);
-  }
-}
-
-.animate-wave-glow {
-  animation: wave-glow 3s ease-in-out infinite;
-}
-
-.animate-wave-flow {
-  animation: wave-flow 4s linear infinite;
-}
-
-.animate-center-pulse {
-  animation: center-pulse 2s ease-in-out infinite;
-}
-
-.animate-emerge-beam {
-  animation: emerge-beam 2.5s ease-out infinite;
-}
-
-.animate-sparkle {
-  animation: sparkle 1.5s ease-in-out infinite;
+.text-glow-green {
+  text-shadow: 0 0 10px rgba(0, 255, 153, 0.3);
 }
 
 /* ── Terminal Styles ───────────────────────────────────────────── */
 .terminal-window {
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.05),
-    0 4px 6px -1px rgba(0, 0, 0, 0.4),
-    0 20px 40px -4px rgba(0, 0, 0, 0.5),
-    0 0 60px -10px rgba(16, 185, 129, 0.08);
+    0 0 0 1px rgba(30, 30, 46, 0.8),
+    0 4px 6px -1px rgba(0, 0, 0, 0.6),
+    0 20px 40px -4px rgba(0, 0, 0, 0.7),
+    0 0 60px -10px rgba(0, 255, 153, 0.05);
 }
 
 .terminal-output::-webkit-scrollbar {
@@ -208,16 +88,61 @@ body, #root, .min-h-screen {
 }
 
 .terminal-output::-webkit-scrollbar-thumb {
-  background: rgba(75, 85, 99, 0.5);
+  background: rgba(0, 255, 153, 0.2);
   border-radius: 3px;
 }
 
 .terminal-output::-webkit-scrollbar-thumb:hover {
-  background: rgba(75, 85, 99, 0.8);
+  background: rgba(0, 255, 153, 0.4);
 }
 
-/* Firefox scrollbar */
 .terminal-output {
   scrollbar-width: thin;
-  scrollbar-color: rgba(75, 85, 99, 0.5) transparent;
+  scrollbar-color: rgba(0, 255, 153, 0.2) transparent;
+}
+
+/* ── Selection color ──────────────────────────────────────────── */
+::selection {
+  background: rgba(0, 255, 153, 0.25);
+  color: #f0f0f5;
+}
+
+/* ── Focus styles ─────────────────────────────────────────────── */
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #00ff99 !important;
+  box-shadow: 0 0 0 1px rgba(0, 255, 153, 0.3);
+}
+
+/* ── Smooth scrollbar for main content ────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e1e2e;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2a2a3e;
+}
+
+/* ── Link hover effect ────────────────────────────────────────── */
+a {
+  transition: color 0.2s ease;
+}
+
+/* ── Pulse animation for status indicator ─────────────────────── */
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse-green {
+  animation: pulse-green 2s ease-in-out infinite;
 }

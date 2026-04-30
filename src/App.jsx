@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -12,7 +11,7 @@ import Terminal from './components/Terminal';
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-neutral-100 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100">
+    <div className="min-h-screen flex flex-col bg-hacker-bg text-hacker-text font-sans scanlines">
       <Navbar />
 
       {/* Two-column layout: content left, terminal right */}

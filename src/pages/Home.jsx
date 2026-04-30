@@ -1,20 +1,26 @@
 import React from 'react';
 import FlipWords from '../components/FlipWords';
-import { BackgroundLines } from '../components/ui/background-lines';
 
 const Home = () => (
-  <BackgroundLines id="home" className="flex flex-col justify-start items-start pt-12 pb-0 mb-40">
-    <div className="relative z-20 flex flex-col items-start">
-      <img src="/profile.jpg" alt="Bhabesh Behera" className="w-48 h-48 rounded-full border-4 border-gray-300 dark:border-gray-700 mb-8 shadow-xl object-cover relative z-30" />
-      <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-left leading-tight drop-shadow-xl relative z-20">Hi, I'm Bhabesh Behera.<br />
-        <span className="text-black dark:text-white">
+  <section id="home" className="pt-24 pb-0 mb-32 hacker-grid relative">
+    <div className="flex flex-col items-start">
+      <img 
+        src="/profile.jpg" 
+        alt="Bhabesh Behera" 
+        className="w-40 h-40 rounded-full border border-hacker-green/30 mb-8 object-cover glow-green-sm" 
+      />
+      <h1 className="font-mono text-3xl md:text-4xl font-bold mb-4 text-left leading-tight text-hacker-text">
+        Hi, I'm Bhabesh Behera.<br />
+        <span className="text-hacker-green">
           <FlipWords words={["Software Engineer", "Web3 Builder", "Full-Stack Developer", "Security Analyst"]} />
         </span>
       </h1>
-      <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6 text-left max-w-2xl font-medium relative z-20">AI might take my job, but it'll choke on my spaghetti code first.</p>
+      <p className="text-base md:text-lg text-hacker-muted mb-6 text-left max-w-2xl font-sans">
+        AI might take my job, but it'll choke on my spaghetti code first.
+      </p>
       <a 
         href="#contact" 
-        className="inline-block px-8 py-3 bg-black dark:bg-white text-white dark:text-black rounded-xl font-bold shadow-lg hover:bg-gray-900 dark:hover:bg-gray-200 transition mb-2 text-lg border border-gray-300 dark:border-gray-700 relative z-20"
+        className="inline-block px-6 py-2.5 border border-hacker-green text-hacker-green rounded font-mono text-sm hover:bg-hacker-green/10 transition-all duration-300"
         onClick={(e) => {
           e.preventDefault();
           document.getElementById('contact').scrollIntoView({ 
@@ -23,13 +29,14 @@ const Home = () => (
           });
         }}
       >
-        Hire Me!
+        ./hire_me.sh
       </a>
-      <div className="flex gap-4 items-center mb-0 relative z-20">
-        <span className="text-base text-gray-500">Available for collaborations</span>
+      <div className="flex gap-3 items-center mt-4">
+        <span className="w-2 h-2 rounded-full bg-hacker-green animate-pulse-green"></span>
+        <span className="text-sm text-hacker-muted font-mono">[STATUS: AVAILABLE]</span>
       </div>
     </div>
-  </BackgroundLines>
+  </section>
 );
 
 export default Home;
