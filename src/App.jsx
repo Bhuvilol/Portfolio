@@ -8,49 +8,39 @@ import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import FloatingDock from './components/FloatingDock';
 import TechStackTrain from './components/TechStackTrain';
-import ThemeToggleButton from './components/ThemeToggleButton';
+import Terminal from './components/Terminal';
 
 function App() {
-  const [showFloatingToggle, setShowFloatingToggle] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowFloatingToggle(window.scrollY > 200);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <div className="min-h-screen flex flex-col bg-neutral-100 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100">
       <Navbar />
-      <main className="flex-1 w-full max-w-4xl mx-auto px-6 md:px-2">
-        <Home />
-        <TechStackTrain />
-        <About />
-        <Projects />
-        <Experience />
-        <Contact />
-      </main>
-      <Footer />
-      <FloatingDock />
-            <div className={`fixed top-8 right-1/2 z-50 translate-x-1/2 transition-all duration-500 ease-in-out ${
-        showFloatingToggle 
-          ? 'opacity-100 transform translate-y-0' 
-          : 'opacity-0 transform -translate-y-4 pointer-events-none'
-      }`}>
-        <div className="relative">
-          {/* Pulse ring effect */}
-          <div 
-            className="absolute inset-0 rounded-full bg-gray-700/40 dark:bg-white/40" 
-            style={{ 
-              animationDelay: '1s',
-              animation: 'pulse-slow 2s ease-in-out infinite'
-            }}
-          ></div>
-          <ThemeToggleButton className="shadow-xl w-12 h-12 text-xl relative z-10" />
+
+      {/* Two-column layout: content left, terminal right */}
+      <div className="flex-1 w-full max-w-[1440px] mx-auto px-6 lg:px-12 xl:px-16">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 xl:gap-20">
+          
+          {/* ── Left column: all content ── */}
+          <main className="flex-1 min-w-0">
+            <Home />
+            <TechStackTrain />
+            <About />
+            <Projects />
+            <Experience />
+            <Contact />
+          </main>
+
+          {/* ── Right column: sticky terminal ── */}
+          <aside className="hidden lg:block lg:w-[36%] xl:w-[35%] shrink-0 pt-8">
+            <div className="sticky top-8" style={{ maxHeight: 'calc(100vh - 4rem)' }}>
+              <Terminal />
+            </div>
+          </aside>
+
         </div>
       </div>
+
+      <Footer />
+      <FloatingDock />
     </div>
   );
 }
