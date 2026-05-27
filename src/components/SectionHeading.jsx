@@ -1,4 +1,3 @@
-import React from 'react';
 import { EncryptedText } from './ui/encrypted-text';
 
 /**

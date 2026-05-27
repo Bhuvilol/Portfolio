@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FiExternalLink, FiTerminal, FiFileText } from 'react-icons/fi';
 
 const MEDIUM_USER = 'bhuvism003';

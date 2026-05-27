@@ -1,4 +1,3 @@
-import React from 'react';
 import LinkPreview from '../components/LinkPreview';
 import SectionHeading from '../components/SectionHeading';
 

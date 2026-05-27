@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
 // ── Kali Linux style prompt ──────────────────────────────────────
 const PROMPT_USER = 'root';

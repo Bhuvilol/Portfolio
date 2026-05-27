@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaFileAlt, FaEnvelope, FaInstagram } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';

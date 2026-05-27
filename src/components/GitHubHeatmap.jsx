@@ -1,5 +1,3 @@
-import React from 'react';
-
 const USERNAME = 'Bhuvilol';
 // Source uses a muted green (not neon) — the CSS filter below inverts
 // the light empty squares to blend with the dark background, keeping

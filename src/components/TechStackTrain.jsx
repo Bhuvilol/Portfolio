@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { FaReact, FaNodeJs, FaPython, FaJava, FaGitAlt, FaHardHat, FaDocker } from 'react-icons/fa';
 import { SiSolidity, SiFirebase, SiMongodb, SiTailwindcss, SiExpress, SiPostgresql, SiRedis, SiOpencv, SiTensorflow, SiTypescript, SiGo, SiFastapi } from 'react-icons/si';

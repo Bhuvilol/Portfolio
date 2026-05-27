@@ -1,5 +1,3 @@
-import React from 'react';
-
 const NOW_ITEMS = [
   { label: 'shipping', value: 'TrustSeal v2 — IoT supply chain tracker' },
   { label: 'learning', value: 'Rust + distributed systems internals' },

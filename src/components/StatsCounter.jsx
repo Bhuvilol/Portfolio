@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const STATS = [
   { value: 25, suffix: '+', label: 'projects shipped' },

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiLink } from 'react-icons/hi';
 import { HiDownload } from 'react-icons/hi';
@@ -408,4 +408,3 @@ const Projects = () => {
 };
 
 export default Projects; 
-

@@ -1,4 +1,3 @@
-import React from 'react';
 import FlipWords from '../components/FlipWords';
 import StatsCounter from '../components/StatsCounter';
 

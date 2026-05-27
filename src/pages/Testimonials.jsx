@@ -1,4 +1,3 @@
-import React from 'react';
 import SectionHeading from '../components/SectionHeading';
 
 // NOTE: Replace these placeholder quotes with real ones from judges,

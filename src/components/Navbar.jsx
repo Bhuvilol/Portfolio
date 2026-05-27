@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { openCommandPalette } from './commandPaletteEvents';
 
