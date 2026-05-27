@@ -14,7 +14,7 @@ const projects = [
     liveDemo: 'https://0xtrustseal.vercel.app',
     github: 'https://github.com/Bhuvilol/TrustSeal',
     description: `What if your supply chain could snitch on itself?\n\nTrustSeal is a tamper-evident IoT supply chain tracker that combines real-world sensor telemetry with Polygon smart contracts — so when someone messes with your shipment, the blockchain knows before your manager does.\n\nPresented at PROXIMA 2026 in front of 1000+ industry attendees. Built with IoT telemetry pipelines, IPFS-based immutable logging, and Polygon for on-chain custody verification. Cryptographic hashing ensures 100% data integrity across the entire chain.\n\nBecause “trust me bro” is not a valid audit trail.`,
-    techStack: 'Polygon • Solidity • IPFS • IoT • Hardhat • C++ • Node.js',
+    techStack: 'React • TypeScript • FastAPI • PostgreSQL • Redis • Solidity • Polygon • IPFS • ESP32 • Arduino',
   },
   {
     title: 'Vortex',
@@ -32,7 +32,7 @@ const projects = [
     liveDemo: 'https://auralabs.vercel.app/',
     github: 'https://github.com/Bhuvilol/AURA',
     description: `Think Jarvis, but for students who procrastinate better than they plan.\n\nAURA is your academic co-pilot, here to organize schedules, answer burning questions, and keep your chaos only slightly less chaotic.\n\nBuilt with React (for snazzy looks), Express (for backend wizardry), and Firebase (so your tasks survive your memory lapses). AURA chats with you using OpenRouter AI—finally, answers without judgment. Drag, drop, quiz, flashcard, and get motivational quotes shorter than your attention span.\n\nFor students who want to get things done, but also want their apps to look like sci-fi.`,
-    techStack: 'React • Express • Node.js • Firebase • OpenRouter AI • framer-motion • Spline 3D • katex',
+    techStack: 'React • Vite • Node.js • Express • Firebase • OpenRouter API • framer-motion',
   },
   {
     title: 'LicenZ',
@@ -40,7 +40,7 @@ const projects = [
     category: 'AI • Web3',
     github: 'https://github.com/Bhuvilol/LicenZ',
     description: `AI training data has a provenance problem. LicenZ fixes it.\n\nA decentralized AI licensing platform built on Ethereum — minting and managing 100+ AI assets with immutable on-chain ownership records. Every content hash is verified automatically, cutting manual validation effort by 60%.\n\nIPFS + MetaMask integration reduced asset retrieval latency by 40%. A Dockerized KPI dashboard provides real-time monitoring across content verification pipelines.\n\nBuilt at HackOdisha 2025. Because “I found this dataset online” is not a license.`,
-    techStack: 'Ethereum • Solidity • IPFS • MetaMask • Hardhat • Ethers.js • Python • PostgreSQL • Docker',
+    techStack: 'React • TailwindCSS • Go • Gin • Solidity • Ethereum • Hardhat • MetaMask • IPFS',
   },
   {
     title: 'Genz-Hunterz',
@@ -57,7 +57,31 @@ const projects = [
     category: 'AI/ML',
     github: 'https://github.com/Bhuvilol/CAIR-CD',
     description: `Causal Analysis & Interactive Reasoning over Conversational Data.\n\nAn end-to-end ML pipeline built on 10K+ transcripts with 85%+ prediction accuracy. Engineered 15+ behavioral signal features with lift-based causal scoring — goes beyond correlation to ask “why did this happen?”\n\nA Streamlit-based counterfactual reasoning interface lets you explore “what if” scenarios, reducing negative outcomes by 25% and improving analysis efficiency by 40%.\n\nBecause your data deserves better than a bar chart.`,
-    techStack: 'Python • ML • Streamlit • Pandas • Causal Inference • LangChain • Jupyter',
+    techStack: 'Python • Jupyter • Streamlit • Keras • sentence-transformers • Pandas • scikit-learn',
+  },
+  {
+    title: 'Hand Gesture Reader',
+    image: 'https://placehold.co/400x250/13131d/00ff99?text=Hand+Gesture',
+    category: 'AI/ML',
+    github: 'https://github.com/Bhuvilol/Hand-Gesture-Reader',
+    description: `Real-time hand gesture and sign language recognition from webcam input.\n\nBuilt an 8-class hand sign recognizer and a finger gesture classifier using pre-trained TensorFlow Lite models with MediaPipe for landmark extraction. Runs live inference at interactive framerates.\n\nTrained on custom gesture datasets, with LSTM models for temporal finger-gesture sequences.\n\nBecause talking to your computer shouldn't require a keyboard.`,
+    techStack: 'Python • MediaPipe • OpenCV • TensorFlow • TFLite • LSTM • scikit-learn • Jupyter',
+  },
+  {
+    title: 'Object Detector',
+    image: 'https://placehold.co/400x250/13131d/00ff99?text=ObjDetector',
+    category: 'AI/ML',
+    github: 'https://github.com/Bhuvilol/ObjDetector_webcam_and_video',
+    description: `Real-time object detection on live webcam and video file inputs.\n\nIntegrates YOLOv8 with CVZone and OpenCV for a clean detection pipeline — bounding boxes, class labels, and confidence scores rendered live. Works on both webcam streams and pre-recorded video.\n\nOptimized for CPU inference with GPU acceleration path available for NVIDIA hardware.\n\nDetects faster than most people notice things exist.`,
+    techStack: 'Python • YOLOv8 • OpenCV • CVZone • NumPy • PyTorch',
+  },
+  {
+    title: 'Gender Detection',
+    image: 'https://placehold.co/400x250/13131d/00ff99?text=GenderDetect',
+    category: 'AI/ML',
+    github: 'https://github.com/Bhuvilol/GenderDetection',
+    description: `Deep learning model for real-time gender classification from facial inputs.\n\nTrained a Keras neural network for binary gender classification with a face detection preprocessing stage. Includes a Jupyter notebook for model experimentation and a standalone Python script for live webcam inference.\n\nA compact ML project demonstrating the full pipeline: data → model → deployment.`,
+    techStack: 'Python • Keras • OpenCV • Jupyter • NumPy',
   },
   {
     title: 'Crypto Arcade Runner',
@@ -181,8 +205,8 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
             />
             {/* Modal Box */}
             <motion.div
-              className="relative w-full max-w-md sm:aspect-square rounded-lg border border-hacker-border bg-hacker-surface p-0 overflow-hidden flex flex-col"
-              style={{ maxHeight: '85vh', minHeight: '320px' }}
+              className="relative w-full max-w-md rounded-lg border border-hacker-border bg-hacker-surface flex flex-col"
+              style={{ maxHeight: '80vh', minHeight: '300px' }}
               initial={{ y: 40, scale: 0.8, opacity: 0 }}
               animate={{ y: 0, scale: 1, opacity: 1 }}
               exit={{ y: 40, scale: 0.8, opacity: 0 }}
@@ -195,49 +219,49 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
               >
                 ×
               </button>
-              <div className="p-5 pt-8 sm:p-8 sm:pt-12 flex flex-col h-full">
-                <div className="shrink-0">
-                  <h3 className="font-mono text-xl font-bold mb-3 text-hacker-green text-center">{project.title}</h3>
-                    <div className="relative w-full h-32 mb-4">
-                    <img src={project.image} alt={project.title} className="w-full h-full object-cover rounded-lg border border-hacker-border" />
-                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-4 z-10">
-                      {project.liveDemo && (
-                        <a href={project.liveDemo} target="_blank" rel="noopener noreferrer" aria-label="Live Demo" className="mx-1 p-2.5 bg-hacker-surface/80 backdrop-blur-md border border-hacker-green/40 text-hacker-green rounded-lg transition-all flex items-center justify-center group hover:bg-hacker-green/10">
-                          {project.title === 'Genz-Hunterz' ? (
-                            <HiDownload className="w-7 h-7 group-hover:scale-110 group-active:scale-95 transition-transform" />
-                          ) : (
-                            <HiLink className="w-7 h-7 group-hover:scale-110 group-active:scale-95 transition-transform" />
-                          )}
-                        </a>
-                      )}
-                      {project.github && (
-                        <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="mx-1 p-2.5 bg-hacker-surface/80 backdrop-blur-md border border-hacker-border text-hacker-text rounded-lg transition-all flex items-center justify-center group hover:border-hacker-green hover:text-hacker-green">
-                          <FaGithub className="w-7 h-7 group-hover:scale-110 group-active:scale-95 transition-transform" />
-                        </a>
-                      )}
-                    </div>
+              {/* Fixed header: title + image */}
+              <div className="shrink-0 px-4 pt-7 pb-0 sm:px-8 sm:pt-12">
+                <h3 className="font-mono text-lg font-bold mb-2 text-hacker-green text-center">{project.title}</h3>
+                <div className="relative w-full h-24 sm:h-32 mb-3">
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover rounded-lg border border-hacker-border" />
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-4 z-10">
+                    {project.liveDemo && (
+                      <a href={project.liveDemo} target="_blank" rel="noopener noreferrer" aria-label="Live Demo" className="mx-1 p-2.5 bg-hacker-surface/80 backdrop-blur-md border border-hacker-green/40 text-hacker-green rounded-lg transition-all flex items-center justify-center group hover:bg-hacker-green/10">
+                        {project.title === 'Genz-Hunterz' ? (
+                          <HiDownload className="w-7 h-7 group-hover:scale-110 group-active:scale-95 transition-transform" />
+                        ) : (
+                          <HiLink className="w-7 h-7 group-hover:scale-110 group-active:scale-95 transition-transform" />
+                        )}
+                      </a>
+                    )}
+                    {project.github && (
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="mx-1 p-2.5 bg-hacker-surface/80 backdrop-blur-md border border-hacker-border text-hacker-text rounded-lg transition-all flex items-center justify-center group hover:border-hacker-green hover:text-hacker-green">
+                        <FaGithub className="w-7 h-7 group-hover:scale-110 group-active:scale-95 transition-transform" />
+                      </a>
+                    )}
                   </div>
                 </div>
-                <div className="flex-1 min-h-0 overflow-y-auto modal-scrollbar">
-                  <div className="mb-4">
-                    <span className="font-mono text-sm text-hacker-green block mb-2">[+] Tech Stack:</span>
-                    <div className="flex flex-wrap items-center gap-2">
-                      {project.techStack && project.techStack.split('•').map((tech, idx) => (
-                        <span
-                          key={idx}
-                          className="inline-block px-2.5 py-1 bg-hacker-bg border border-hacker-border text-hacker-text rounded text-xs font-mono"
-                        >
-                          {tech.trim()}
-                        </span>
-                      ))}
-                    </div>
+              </div>
+              {/* Scrollable body */}
+              <div className="flex-1 overflow-y-auto modal-scrollbar px-4 pb-4 sm:px-8 sm:pb-6" style={{ WebkitOverflowScrolling: 'touch' }}>
+                <div className="mb-4">
+                  <span className="font-mono text-sm text-hacker-green block mb-2">[+] Tech Stack:</span>
+                  <div className="flex flex-wrap items-center gap-2">
+                    {project.techStack && project.techStack.split('•').map((tech, idx) => (
+                      <span
+                        key={idx}
+                        className="inline-block px-2.5 py-1 bg-hacker-bg border border-hacker-border text-hacker-text rounded text-xs font-mono"
+                      >
+                        {tech.trim()}
+                      </span>
+                    ))}
                   </div>
-                  <div className="mb-1">
-                    <span className="font-mono text-sm text-hacker-green">[+] Description:</span>
-                  </div>
-                  <div className="mb-4 whitespace-pre-line text-hacker-text max-w-none text-sm leading-relaxed">
-                    {project.description}
-                  </div>
+                </div>
+                <div className="mb-1">
+                  <span className="font-mono text-sm text-hacker-green">[+] Description:</span>
+                </div>
+                <div className="mb-4 whitespace-pre-line text-hacker-text max-w-none text-sm leading-relaxed">
+                  {project.description}
                 </div>
               </div>
             </motion.div>
@@ -275,48 +299,60 @@ const Projects = () => {
         onFilterChange={setActiveFilter}
       />
       <ProjectModal project={selectedProject} isOpen={modalOpen} onClose={handleCloseModal} />
-      {/* Bento grid for desktop/tablet — 12 cards, 5 rows. Only shown when filter === 'all'. */}
+      {/* Bento grid — 15 cards, 8 rows, 4 tall cards staggered across columns */}
       <div className={`${showBento ? 'hidden md:grid' : 'hidden'} grid-cols-3 gap-1 auto-rows-[260px]`}>
-        {/* Row 1: TrustSeal (hero, 2col) + Vortex (tall, spans rows 1-2) */}
-        <div className="col-span-2 row-span-1 h-full w-full min-h-[220px]">
-          <AnimatedProjectCard project={projects[0]} size="large" minHeight="min-h-[220px]" index={0} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[0])} />
+        {/* Row 1: TrustSeal (col1-2) | Vortex (col3, tall r1-2) */}
+        <div className="col-span-2 row-span-1 h-full w-full">
+          <AnimatedProjectCard project={projects[0]} size="large" minHeight="min-h-0" index={0} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[0])} />
         </div>
-        <div className="col-span-1 row-span-2 h-full w-full min-h-[480px]">
-          <AnimatedProjectCard project={projects[1]} size="large" minHeight="min-h-[480px]" index={1} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[1])} />
+        <div className="col-span-1 row-span-2 h-full w-full">
+          <AnimatedProjectCard project={projects[1]} size="large" minHeight="min-h-0" index={1} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[1])} />
         </div>
-        {/* Row 2: AURA + LicenZ (Vortex continues at col 3) */}
-        <div className="col-span-1 row-span-1 h-full w-full min-h-[220px]">
-          <AnimatedProjectCard project={projects[2]} size="medium" minHeight="min-h-[220px]" index={2} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[2])} />
+        {/* Row 2: AURA (col1, tall r2-3) | LicenZ (col2) | (Vortex col3) */}
+        <div className="col-span-1 row-span-2 h-full w-full">
+          <AnimatedProjectCard project={projects[2]} size="large" minHeight="min-h-0" index={2} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[2])} />
         </div>
-        <div className="col-span-1 row-span-1 h-full w-full min-h-[220px]">
-          <AnimatedProjectCard project={projects[3]} size="medium" minHeight="min-h-[220px]" index={3} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[3])} />
+        <div className="col-span-1 row-span-1 h-full w-full">
+          <AnimatedProjectCard project={projects[3]} size="medium" minHeight="min-h-0" index={3} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[3])} />
         </div>
-        {/* Row 3: Genz (tall, spans rows 3-4) + CAIR-CD + Crypto Arcade */}
-        <div className="col-span-1 row-span-2 h-full w-full min-h-[480px]">
-          <AnimatedProjectCard project={projects[4]} size="large" minHeight="min-h-[480px]" index={4} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[4])} />
+        {/* Row 3: (AURA col1) | CAIR-CD (col2-3) */}
+        <div className="col-span-2 row-span-1 h-full w-full">
+          <AnimatedProjectCard project={projects[5]} size="large" minHeight="min-h-0" index={5} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[5])} />
         </div>
-        <div className="col-span-1 row-span-1 h-full w-full min-h-[220px]">
-          <AnimatedProjectCard project={projects[5]} size="medium" minHeight="min-h-[220px]" index={5} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[5])} />
+        {/* Row 4: Genz (col1, tall r4-5) | ObjDetect (col2) | GenderDetect (col3) */}
+        <div className="col-span-1 row-span-2 h-full w-full">
+          <AnimatedProjectCard project={projects[4]} size="large" minHeight="min-h-0" index={4} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[4])} />
         </div>
-        <div className="col-span-1 row-span-1 h-full w-full min-h-[220px]">
-          <AnimatedProjectCard project={projects[6]} size="medium" minHeight="min-h-[220px]" index={6} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[6])} />
+        <div className="col-span-1 row-span-1 h-full w-full">
+          <AnimatedProjectCard project={projects[7]} size="medium" minHeight="min-h-0" index={7} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[7])} />
         </div>
-        {/* Row 4: (Genz continues at col 1) + Cast-n-Count + Chainledger */}
-        <div className="col-span-1 row-span-1 h-full w-full min-h-[220px]">
-          <AnimatedProjectCard project={projects[7]} size="medium" minHeight="min-h-[220px]" index={7} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[7])} />
+        <div className="col-span-1 row-span-1 h-full w-full">
+          <AnimatedProjectCard project={projects[8]} size="medium" minHeight="min-h-0" index={8} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[8])} />
         </div>
-        <div className="col-span-1 row-span-1 h-full w-full min-h-[220px]">
-          <AnimatedProjectCard project={projects[8]} size="medium" minHeight="min-h-[220px]" index={8} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[8])} />
+        {/* Row 5: (Genz col1) | CryptoArcade (col2-3) */}
+        <div className="col-span-2 row-span-1 h-full w-full">
+          <AnimatedProjectCard project={projects[9]} size="large" minHeight="min-h-0" index={9} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[9])} />
         </div>
-        {/* Row 5: ChakravyuhGenesis + Safemix + Praman (extras, uniform row) */}
-        <div className="col-span-1 row-span-1 h-full w-full min-h-[220px]">
-          <AnimatedProjectCard project={projects[9]} size="medium" minHeight="min-h-[220px]" index={9} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[9])} />
+        {/* Row 6: HandGesture (col1, tall r6-7) | Cast (col2) | Chainledger (col3) */}
+        <div className="col-span-1 row-span-2 h-full w-full">
+          <AnimatedProjectCard project={projects[6]} size="large" minHeight="min-h-0" index={6} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[6])} />
         </div>
-        <div className="col-span-1 row-span-1 h-full w-full min-h-[220px]">
-          <AnimatedProjectCard project={projects[10]} size="medium" minHeight="min-h-[220px]" index={10} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[10])} />
+        <div className="col-span-1 row-span-1 h-full w-full">
+          <AnimatedProjectCard project={projects[10]} size="medium" minHeight="min-h-0" index={10} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[10])} />
         </div>
-        <div className="col-span-1 row-span-1 h-full w-full min-h-[220px]">
-          <AnimatedProjectCard project={projects[11]} size="medium" minHeight="min-h-[220px]" index={11} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[11])} />
+        <div className="col-span-1 row-span-1 h-full w-full">
+          <AnimatedProjectCard project={projects[11]} size="medium" minHeight="min-h-0" index={11} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[11])} />
+        </div>
+        {/* Row 7: (HandGesture col1) | Chakravyuh (col2) | Safemix (col3) */}
+        <div className="col-span-1 row-span-1 h-full w-full">
+          <AnimatedProjectCard project={projects[12]} size="medium" minHeight="min-h-0" index={12} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[12])} />
+        </div>
+        <div className="col-span-1 row-span-1 h-full w-full">
+          <AnimatedProjectCard project={projects[13]} size="medium" minHeight="min-h-0" index={13} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[13])} />
+        </div>
+        {/* Row 8: Praman (full width) */}
+        <div className="col-span-3 row-span-1 h-full w-full">
+          <AnimatedProjectCard project={projects[14]} size="large" minHeight="min-h-0" index={14} hoveredIndex={hoveredIndex} onHover={setHoveredIndex} onClick={() => handleCardClick(projects[14])} />
         </div>
       </div>
       {/* Uniform grid for filtered view (desktop) — replaces bento when a filter is active */}
@@ -346,23 +382,26 @@ const Projects = () => {
         </div>
       )}
 
-      {/* Fallback for mobile: simple vertical list, respects active filter */}
-      <div className="grid md:hidden grid-cols-1 gap-1">
-        {filteredProjects.map((project) => {
-          const originalIndex = projects.indexOf(project);
-          return (
-            <AnimatedProjectCard
-              key={project.title}
-              project={project}
-              size="medium"
-              minHeight="min-h-[220px]"
-              index={originalIndex}
-              hoveredIndex={hoveredIndex}
-              onHover={setHoveredIndex}
-              onClick={() => handleCardClick(project)}
-            />
-          );
-        })}
+      {/* Mobile: horizontal scroll carousel */}
+      <div className="md:hidden -mx-6 px-6 overflow-x-auto snap-x snap-mandatory scrollbar-none">
+        <div className="flex gap-3 pb-3" style={{ width: 'max-content' }}>
+          {filteredProjects.map((project) => {
+            const originalIndex = projects.indexOf(project);
+            return (
+              <div key={project.title} className="w-[260px] h-[220px] shrink-0 snap-start">
+                <AnimatedProjectCard
+                  project={project}
+                  size="medium"
+                  minHeight="min-h-0"
+                  index={originalIndex}
+                  hoveredIndex={hoveredIndex}
+                  onHover={setHoveredIndex}
+                  onClick={() => handleCardClick(project)}
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

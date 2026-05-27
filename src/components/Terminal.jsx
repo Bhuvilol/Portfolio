@@ -39,33 +39,52 @@ const PORTFOLIO = {
 };
 
 const NEOFETCH_ART = [
-  '       ,.....,        ',
-  '     ,o8888888o.      ',
-  '    ,o8888888888o.    ',
-  '   .88888888888888.   ',
-  '  o8888  8888  8888o  ',
-  '  08888  8888  8888o  ',
-  '   `Y88  8888  88Y`   ',
-  '    `Y8888O88888Y`    ',
-  '     `Y88UUU888Y`     ',
-  '       `Y8M8y`       ',
-  '         `YY`         ',
-  '`--------------------`',
+  '      ▄▄     ▄▄     ',
+  '       ┃     ┃      ',
+  '       ┃ ||| ┃      ',
+  '   ╔══╩═══════╩══╗   ',
+  '    ║ ▓▓  ▀  ▓▓ ║   ',
+  '    ║  ██   ██  ║   ',
+  '    ║   ▀▀█▀▀   ║   ',
+  '    ║  ▄██▄██▄  ║   ',
+  '    ║ █▀█▀█▀█▀█ ║   ',
+  '   ▄╚═══════════╝▄  ',
+  ' ▄▀    ██   ██    ▀▄',
+  ' ▓    ███   ███    ▓',
+  '     ████   ████    ',
+  '    ████     ████   ',
+  '   ▄███       ███▄  ',
 ];
 
-const NEOFETCH_INFO = [
-  { label: 'root@kali', value: '' },
-  { label: '─────────', value: '' },
-  { label: 'OS', value: 'Kali Linux' },
-  { label: 'Host', value: 'Cloudflare' },
-  { label: 'Kernel', value: 'React 19' },
-  { label: 'Shell', value: 'kali-sh' },
-  { label: 'DE', value: 'Portfolio' },
-  { label: 'CPU', value: 'Caffeine' },
-  { label: 'Memory', value: '99% (Chrome)' },
-  { label: 'Packages', value: '470 (npm)' },
-  { label: 'Uptime', value: '∞' },
-];
+function buildNeofetchInfo() {
+  const start = new Date('2022-08-01');
+  const now = new Date();
+  const months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
+  const years = Math.floor(months / 12);
+  const remMonths = months % 12;
+  const uptime = years > 0 ? `${years}y ${remMonths}mo` : `${remMonths}mo`;
+
+  return [
+    { label: 'bhuvi@kali',  value: '' },
+    { label: '───────────', value: '' },
+    { label: 'Name',        value: 'Bhabesh Behera' },
+    { label: 'Role',        value: 'Software Engineer' },
+    { label: 'Location',    value: 'Bhubaneswar 🇮🇳' },
+    { label: 'OS',          value: 'Kali Linux' },
+    { label: 'Host',        value: 'Cloudflare' },
+    { label: 'Kernel',      value: 'React 19 + Vite 7' },
+    { label: 'Shell',       value: 'zsh' },
+    { label: 'Focus',       value: 'Web3 · AI/ML · Full-Stack' },
+    { label: 'Wins',        value: 'UIDAI · ETHIndia 2025' },
+    { label: 'Projects',    value: '25+ shipped' },
+    { label: 'Students',    value: '1500+ reached' },
+    { label: 'Uptime',      value: uptime + ' coding' },
+    { label: 'Status',      value: 'open to work ✅' },
+    { label: 'Contact',     value: 'bhabeshcse@gmail.com' },
+  ];
+}
+
+const NEOFETCH_INFO = buildNeofetchInfo();
 
 // ── Command processor ────────────────────────────────────────────
 function processCommand(input, commandHistory) {
@@ -238,19 +257,21 @@ function processCommand(input, commandHistory) {
       ];
 
     case 'neofetch': {
-      const lines = [{ type: 'info', text: '' }];
+      const out = [{ type: 'info', text: '' }];
       const maxRows = Math.max(NEOFETCH_ART.length, NEOFETCH_INFO.length);
       for (let i = 0; i < maxRows; i++) {
-        const art = (NEOFETCH_ART[i] || '').padEnd(16);
+        const art = NEOFETCH_ART[i] || '';
         const info = NEOFETCH_INFO[i];
-        let infoStr = '';
-        if (info) {
-          infoStr = info.value ? `${info.label}: ${info.value}` : info.label;
-        }
-        lines.push({ type: i < NEOFETCH_ART.length ? 'neo' : 'info', text: `  ${art} ${infoStr}` });
+        out.push({
+          type: 'neofetch-row',
+          art,
+          label: info?.label || '',
+          val: info?.value || '',
+          separator: !!info,
+        });
       }
-      lines.push({ type: 'info', text: '' });
-      return lines;
+      out.push({ type: 'info', text: '' });
+      return out;
     }
 
     case 'nmap':
@@ -433,6 +454,18 @@ function processCommand(input, commandHistory) {
         { type: 'muted', text: '  Hint: :q! to escape (good luck).' },
       ];
 
+    case ':q':
+      return [
+        { type: 'root', text: '  E37: No write since last change (add ! to override)' },
+        { type: 'muted', text: '  Try :q! or :wq to actually exit.' },
+      ];
+
+    case ':q!':
+    case ':wq':
+      return [
+        { type: 'green', text: '  vim closed. Welcome back to reality.' },
+      ];
+
     case '42':
       return [{ type: 'green', text: '  The answer to life, the universe, and everything.' }];
 
@@ -456,11 +489,58 @@ const colorMap = {
   neo: 'text-[#00d4ff]',
 };
 
-const OutputLine = ({ line }) => (
-  <div className={`whitespace-pre font-mono text-xs leading-[1.8] ${colorMap[line.type] || 'text-[#f0f0f5]'}`}>
-    {line.text}
+const CHAR_DELAY = 22; // ms per character
+
+const TypewriterLine = ({ line }) => {
+  const [displayed, setDisplayed] = useState('');
+  const [done, setDone] = useState(false);
+  const full = line.text || '';
+
+  useEffect(() => {
+    if (!full) { setDone(true); return; }
+    let i = 0;
+    const t = setInterval(() => {
+      i++;
+      setDisplayed(full.slice(0, i));
+      if (i >= full.length) { clearInterval(t); setDone(true); }
+    }, CHAR_DELAY);
+    return () => clearInterval(t);
+  }, [full]);
+
+  return (
+    <div className={`whitespace-pre font-mono text-xs leading-[1.8] ${colorMap[line.type] || 'text-[#f0f0f5]'}`}>
+      {displayed}{!done && <span className="opacity-70">▋</span>}
+    </div>
+  );
+};
+
+// neofetch side-by-side row: art on left, info on right
+const NeofetchRow = ({ art, label, val, separator }) => (
+  <div className="flex font-mono text-xs leading-[1.8] whitespace-pre">
+    <span className="text-[#00d4ff] shrink-0" style={{ minWidth: '22ch' }}>{(art || '').padEnd(22)}</span>
+    <span className="text-[#4a4a6a] shrink-0 mx-2">{separator ? '│' : ' '}</span>
+    {label && !val && <span className="text-[#6b7a8d]">{label}</span>}
+    {label && val && (
+      <>
+        <span className="text-[#00ff99] font-bold shrink-0" style={{ minWidth: '10ch' }}>{label}</span>
+        <span className="text-[#4a4a6a] shrink-0 mr-1">:</span>
+        <span className="text-[#f0f0f5]">{val}</span>
+      </>
+    )}
   </div>
 );
+
+const OutputLine = ({ line }) => {
+  if (line.animate) return <TypewriterLine line={line} />;
+  if (line.type === 'neofetch-row') {
+    return <NeofetchRow art={line.art} label={line.label} val={line.val} separator={line.separator} />;
+  }
+  return (
+    <div className={`whitespace-pre font-mono text-xs leading-[1.8] ${colorMap[line.type] || 'text-[#f0f0f5]'}`}>
+      {line.text}
+    </div>
+  );
+};
 
 // ── Kali-style prompt components ─────────────────────────────────
 const PromptLine = ({ command }) => (
@@ -529,10 +609,26 @@ const Terminal = () => {
 
     const result = processCommand(cmd, history);
 
+    const NO_ANIMATE_CMDS = ['neofetch', 'help', 'about', 'skills', 'projects', 'ls', 'achievements', 'history'];
+    const baseCmd = cmd.trim().split(/\s+/)[0].toLowerCase();
+    const skipAnimate = NO_ANIMATE_CMDS.includes(baseCmd);
+
     if (result === 'CLEAR') {
       setLines([]);
-    } else {
+    } else if (skipAnimate) {
+      // dump all lines instantly
       setLines(prev => [...prev, promptEntry, ...result]);
+    } else {
+      // typewriter: chain lines by text length
+      setLines(prev => [...prev, promptEntry]);
+      let delay = 0;
+      result.forEach((line) => {
+        const startDelay = delay;
+        setTimeout(() => {
+          setLines(prev => [...prev, { ...line, animate: true }]);
+        }, startDelay);
+        delay += ((line.text?.length || 0) * CHAR_DELAY) + 40;
+      });
     }
 
     setHistory(prev => [...prev, cmd]);
@@ -562,7 +658,7 @@ const Terminal = () => {
   }, [history, historyIndex]);
 
   return (
-    <div className="h-full rounded-xl overflow-hidden flex flex-col border border-[#1a1a2e] bg-[#0c0c14] shadow-[0_0_0_1px_rgba(0,255,153,0.05),0_8px_32px_-4px_rgba(0,0,0,0.8)]">
+    <div className="h-full rounded-xl overflow-hidden flex flex-col bg-[#0c0c14]" style={{ border: '1px solid rgba(0,255,153,0.18)', boxShadow: '0 0 0 1px rgba(0,255,153,0.06) inset, 0 8px 32px -4px rgba(0,0,0,0.8)' }}>
 
       {/* ── Title bar ── */}
       <div className="flex items-center justify-between px-4 py-3 bg-[#111119] border-b border-[#1a1a2e] select-none shrink-0">
