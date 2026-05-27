@@ -12,17 +12,17 @@ const FlipWords = ({ words = [] }) => {
 
   useEffect(() => {
     if (!words.length) return;
-    
+
     // Validate wordIndex to prevent object injection
     const validWordIndex = Math.max(0, Math.min(wordIndex, words.length - 1));
-    const currentWord = words[validWordIndex];
-    
+    const currentWord = words.at(validWordIndex);
+
     // Additional safety check
     if (!currentWord || typeof currentWord !== 'string') {
       console.error('Invalid word at index:', validWordIndex);
       return;
     }
-    
+
     let timeout;
 
     if (!isDeleting && displayed.length < currentWord.length) {
@@ -60,4 +60,4 @@ const FlipWords = ({ words = [] }) => {
   );
 };
 
-export default FlipWords; 
+export default FlipWords;

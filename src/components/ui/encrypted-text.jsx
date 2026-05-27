@@ -6,26 +6,10 @@ const DEFAULT_CHARSET =
   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-={}[];:,.<>/?';
 
 function generateRandomCharacter(charset) {
-  const index = Math.floor(Math.random() * charset.length);
+  const randomValues = new Uint32Array(1);
+  crypto.getRandomValues(randomValues);
+  const index = randomValues.at(0) % charset.length;
   return charset.charAt(index);
-}
-
-function generateGibberishPreservingSpaces(original, charset) {
-  if (!original) return '';
-  let result = '';
-  for (let i = 0; i < original.length; i += 1) {
-    const ch = original[i];
-    result += ch === ' ' ? ' ' : generateRandomCharacter(charset);
-  }
-  return result;
-}
-
-function generateGibberish(length, charset) {
-  let result = '';
-  for (let i = 0; i < length; i++) {
-    result += generateRandomCharacter(charset);
-  }
-  return result;
 }
 
 export const EncryptedText = ({
@@ -54,16 +38,16 @@ export const EncryptedText = ({
   const animationFrameRef = useRef(null);
   const startTimeRef = useRef(0);
   const lastFlipTimeRef = useRef(0);
-  const scrambleCharsRef = useRef([]);
+  const scrambleCharsRef = useRef(new Map());
 
   useEffect(() => {
     if (!isInView || !text) return;
 
     const totalLength = text.length;
     const maxLength = Math.floor(totalLength * initialLengthMultiplier);
-    const initialChars = [];
+    const initialChars = new Map();
     for (let i = 0; i < maxLength; i++) {
-      initialChars.push(generateRandomCharacter(charset));
+      initialChars.set(i, generateRandomCharacter(charset));
     }
     scrambleCharsRef.current = initialChars;
     startTimeRef.current = performance.now();
@@ -108,10 +92,10 @@ export const EncryptedText = ({
       // Re-randomize unrevealed + extra scramble characters
       const timeSinceLastFlip = now - lastFlipTimeRef.current;
       if (timeSinceLastFlip >= Math.max(0, flipDelayMs)) {
-        const currentLen = Math.max(maxLength, scrambleCharsRef.current.length);
+        const currentLen = Math.max(maxLength, scrambleCharsRef.current.size);
         for (let index = 0; index < currentLen; index += 1) {
           if (index >= currentRevealCount) {
-            scrambleCharsRef.current[index] = generateRandomCharacter(charset);
+            scrambleCharsRef.current.set(index, generateRandomCharacter(charset));
           }
         }
         lastFlipTimeRef.current = now;
@@ -137,14 +121,16 @@ export const EncryptedText = ({
   for (let i = 0; i < displayLength; i++) {
     if (i < revealCount) {
       // Revealed real character
-      chars.push({ char: text[i], revealed: true });
+      chars.push({ char: text.charAt(i), revealed: true });
     } else if (i < text.length) {
       // Unrevealed but within real text range — show scramble
-      const ch = text[i] === ' ' ? ' ' : (scrambleCharsRef.current[i] ?? generateRandomCharacter(charset));
+      const ch = text.charAt(i) === ' '
+        ? ' '
+        : (scrambleCharsRef.current.get(i) ?? generateRandomCharacter(charset));
       chars.push({ char: ch, revealed: false });
     } else {
       // Extra trailing gibberish (beyond real text length)
-      chars.push({ char: scrambleCharsRef.current[i] ?? generateRandomCharacter(charset), revealed: false });
+      chars.push({ char: scrambleCharsRef.current.get(i) ?? generateRandomCharacter(charset), revealed: false });
     }
   }
 

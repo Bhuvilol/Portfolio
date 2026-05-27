@@ -1,6 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+const stableDelay = (index, offset, modulo, base = 0) =>
+  ((index * 7 + offset) % modulo) + base;
+
 export function BackgroundLines({ children, className = "", id }) {
   const pathVariants = {
     initial: { strokeDashoffset: 800, strokeDasharray: "50 800" },
@@ -67,11 +70,10 @@ export function BackgroundLines({ children, className = "", id }) {
     "#604483",
   ];
 
-  // Pre-compute stable random delays so they don't change on re-render
-  const firstPathDelays = paths.map(() => Math.floor(Math.random() * 3));
-  const firstPathRepeatDelays = paths.map(() => Math.floor(Math.random() * 2 + 1));
-  const secondPathDelays = paths.map(() => Math.floor(Math.random() * 3 + 1));
-  const secondPathRepeatDelays = paths.map(() => Math.floor(Math.random() * 2 + 1));
+  const firstPathDelays = paths.map((_, index) => stableDelay(index, 0, 3));
+  const firstPathRepeatDelays = paths.map((_, index) => stableDelay(index, 1, 2, 1));
+  const secondPathDelays = paths.map((_, index) => stableDelay(index, 2, 3, 1));
+  const secondPathRepeatDelays = paths.map((_, index) => stableDelay(index, 3, 2, 1));
 
   return (
     <div
@@ -131,47 +133,53 @@ export function BackgroundLines({ children, className = "", id }) {
             }}
           />
           
-          {paths.map((path, idx) => (
-            <motion.path
-              d={path}
-              stroke={colors[idx]}
-              strokeWidth="4"
-              strokeLinecap="round"
-              variants={pathVariants}
-              initial="initial"
-              animate="animate"
-              transition={{
-                duration: 6,
-                ease: "linear",
-                repeat: Infinity,
-                repeatType: "loop",
-                delay: firstPathDelays[idx],
-                repeatDelay: firstPathRepeatDelays[idx],
-              }}
-              key={`path-first-${idx}`}
-            />
-          ))}
+          {paths.map((path, idx) => {
+            const strokeColor = colors.at(idx) ?? colors.at(0);
+            return (
+              <motion.path
+                d={path}
+                stroke={strokeColor}
+                strokeWidth="4"
+                strokeLinecap="round"
+                variants={pathVariants}
+                initial="initial"
+                animate="animate"
+                transition={{
+                  duration: 6,
+                  ease: "linear",
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  delay: firstPathDelays.at(idx),
+                  repeatDelay: firstPathRepeatDelays.at(idx),
+                }}
+                key={`path-first-${idx}`}
+              />
+            );
+          })}
           {/* duplicate for more paths */}
-          {paths.map((path, idx) => (
-            <motion.path
-              d={path}
-              stroke={colors[idx]}
-              strokeWidth="4"
-              strokeLinecap="round"
-              variants={pathVariants}
-              initial="initial"
-              animate="animate"
-              transition={{
-                duration: 6,
-                ease: "linear",
-                repeat: Infinity,
-                repeatType: "loop",
-                delay: secondPathDelays[idx],
-                repeatDelay: secondPathRepeatDelays[idx],
-              }}
-              key={`path-second-${idx}`}
-            />
-          ))}
+          {paths.map((path, idx) => {
+            const strokeColor = colors.at(idx) ?? colors.at(0);
+            return (
+              <motion.path
+                d={path}
+                stroke={strokeColor}
+                strokeWidth="4"
+                strokeLinecap="round"
+                variants={pathVariants}
+                initial="initial"
+                animate="animate"
+                transition={{
+                  duration: 6,
+                  ease: "linear",
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  delay: secondPathDelays.at(idx),
+                  repeatDelay: secondPathRepeatDelays.at(idx),
+                }}
+                key={`path-second-${idx}`}
+              />
+            );
+          })}
         </motion.svg>
       </div>
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { HiMenu, HiX } from 'react-icons/hi';
-import { openCommandPalette } from './CommandPalette';
+import { openCommandPalette } from './commandPaletteEvents';
 
 const NAV_LINKS = [
   { id: 'home', label: '~/home' },

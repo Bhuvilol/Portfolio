@@ -28,17 +28,17 @@ const POSTS = [
   },
 ];
 
-const TAG_COLORS = {
-  web3: 'text-hacker-cyan border-hacker-cyan/30',
-  solidity: 'text-hacker-green border-hacker-green/30',
-  ethereum: 'text-hacker-green border-hacker-green/30',
-  hardhat: 'text-hacker-muted border-hacker-border',
-  tutorial: 'text-hacker-muted border-hacker-border',
-  frontend: 'text-hacker-cyan border-hacker-cyan/30',
-  react: 'text-hacker-cyan border-hacker-cyan/30',
-  design: 'text-hacker-muted border-hacker-border',
-  'ai/ml': 'text-hacker-green border-hacker-green/30',
-};
+const TAG_COLORS = new Map([
+  ['web3', 'text-hacker-cyan border-hacker-cyan/30'],
+  ['solidity', 'text-hacker-green border-hacker-green/30'],
+  ['ethereum', 'text-hacker-green border-hacker-green/30'],
+  ['hardhat', 'text-hacker-muted border-hacker-border'],
+  ['tutorial', 'text-hacker-muted border-hacker-border'],
+  ['frontend', 'text-hacker-cyan border-hacker-cyan/30'],
+  ['react', 'text-hacker-cyan border-hacker-cyan/30'],
+  ['design', 'text-hacker-muted border-hacker-border'],
+  ['ai/ml', 'text-hacker-green border-hacker-green/30'],
+]);
 
 const Blog = () => (
   <section id="blog" className="py-16 sm:py-24 px-6">
@@ -79,7 +79,7 @@ const Blog = () => (
                 {post.tags.map(tag => (
                   <span
                     key={tag}
-                    className={`font-mono text-[10px] border rounded px-1.5 py-0.5 ${TAG_COLORS[tag] || 'text-hacker-muted border-hacker-border'}`}
+                    className={`font-mono text-[10px] border rounded px-1.5 py-0.5 ${TAG_COLORS.get(tag) || 'text-hacker-muted border-hacker-border'}`}
                   >
                     #{tag}
                   </span>

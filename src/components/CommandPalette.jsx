@@ -16,11 +16,6 @@ const COMMANDS = [
   { id: 'aura',         label: 'goto aura',       hint: 'live demo',           action: 'open',   target: 'https://auralabs.vercel.app/' },
 ];
 
-// Dispatch a global event so the mobile nav (or any other button) can trigger the palette.
-export const openCommandPalette = () => {
-  window.dispatchEvent(new CustomEvent('bhuvi:open-command-palette'));
-};
-
 const CommandPalette = () => {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
@@ -85,7 +80,7 @@ const CommandPalette = () => {
       setActiveIdx((i) => Math.max(0, i - 1));
     } else if (e.key === 'Enter') {
       e.preventDefault();
-      runCommand(filtered[activeIdx]);
+      runCommand(filtered.at(activeIdx));
     }
   };
 

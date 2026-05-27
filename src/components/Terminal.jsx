@@ -111,7 +111,7 @@ function processCommand(input, commandHistory) {
         { type: 'cmd', text: '  │  socials        Social links         │' },
         { type: 'cmd', text: '  │  neofetch       System info          │' },
         { type: 'cmd', text: '  │  nmap           Scan portfolio       │' },
-        { type: 'cmd', text: '  │  echo <text>    Echo text            │' },
+        { type: 'cmd', text: '  │  echo [text]    Echo text            │' },
         { type: 'cmd', text: '  │  date           Current date         │' },
         { type: 'cmd', text: '  │  history        Command history      │' },
         { type: 'cmd', text: '  │  clear          Clear terminal       │' },
@@ -168,7 +168,7 @@ function processCommand(input, commandHistory) {
         lines.push({ type: statusColor, text: `  [${i + 1}] ${p.url ? '●' : '○'} ${p.title.padEnd(18)} ${p.category}` });
       });
       lines.push({ type: 'info', text: '' });
-      lines.push({ type: 'muted', text: '  Usage: project <number or name>' });
+      lines.push({ type: 'muted', text: '  Usage: project [number or name]' });
       lines.push({ type: 'info', text: '' });
       return lines;
     }
@@ -177,7 +177,7 @@ function processCommand(input, commandHistory) {
     case 'cat': {
       if (args.length === 0) {
         return [
-          { type: 'root', text: '  Usage: project <number or name>' },
+          { type: 'root', text: '  Usage: project [number or name]' },
           { type: 'muted', text: '  Type "projects" to see the list.' },
         ];
       }
@@ -260,8 +260,8 @@ function processCommand(input, commandHistory) {
       const out = [{ type: 'info', text: '' }];
       const maxRows = Math.max(NEOFETCH_ART.length, NEOFETCH_INFO.length);
       for (let i = 0; i < maxRows; i++) {
-        const art = NEOFETCH_ART[i] || '';
-        const info = NEOFETCH_INFO[i];
+        const art = NEOFETCH_ART.at(i) || '';
+        const info = NEOFETCH_INFO.at(i);
         out.push({
           type: 'neofetch-row',
           art,
@@ -408,7 +408,7 @@ function processCommand(input, commandHistory) {
       if (args[0] === 'blame') {
         return [
           { type: 'muted', text: '  Running git blame...' },
-          { type: 'root', text: '  Every line: bhuvi <bhabeshcse@gmail.com>' },
+          { type: 'root', text: '  Every line: bhuvi (bhabeshcse@gmail.com)' },
           { type: 'green', text: '  At least you know who to call.' },
         ];
       }
@@ -478,16 +478,16 @@ function processCommand(input, commandHistory) {
 }
 
 // ── Line renderer ────────────────────────────────────────────────
-const colorMap = {
-  info: 'text-[#f0f0f5]',
-  green: 'text-[#00ff99]',
-  root: 'text-[#ff4444]',
-  cyan: 'text-[#00d4ff]',
-  muted: 'text-[#6b7a8d]',
-  cmd: 'text-[#c0c0cc]',
-  header: 'text-[#4a4a6a]',
-  neo: 'text-[#00d4ff]',
-};
+const colorMap = new Map([
+  ['info', 'text-[#f0f0f5]'],
+  ['green', 'text-[#00ff99]'],
+  ['root', 'text-[#ff4444]'],
+  ['cyan', 'text-[#00d4ff]'],
+  ['muted', 'text-[#6b7a8d]'],
+  ['cmd', 'text-[#c0c0cc]'],
+  ['header', 'text-[#4a4a6a]'],
+  ['neo', 'text-[#00d4ff]'],
+]);
 
 const CHAR_DELAY = 22; // ms per character
 
@@ -508,7 +508,7 @@ const TypewriterLine = ({ line }) => {
   }, [full]);
 
   return (
-    <div className={`whitespace-pre font-mono text-xs leading-[1.8] ${colorMap[line.type] || 'text-[#f0f0f5]'}`}>
+    <div className={`whitespace-pre font-mono text-xs leading-[1.8] ${colorMap.get(line.type) || 'text-[#f0f0f5]'}`}>
       {displayed}{!done && <span className="opacity-70">▋</span>}
     </div>
   );
@@ -536,7 +536,7 @@ const OutputLine = ({ line }) => {
     return <NeofetchRow art={line.art} label={line.label} val={line.val} separator={line.separator} />;
   }
   return (
-    <div className={`whitespace-pre font-mono text-xs leading-[1.8] ${colorMap[line.type] || 'text-[#f0f0f5]'}`}>
+    <div className={`whitespace-pre font-mono text-xs leading-[1.8] ${colorMap.get(line.type) || 'text-[#f0f0f5]'}`}>
       {line.text}
     </div>
   );
@@ -642,7 +642,7 @@ const Terminal = () => {
       if (history.length === 0) return;
       const newIndex = historyIndex === -1 ? history.length - 1 : Math.max(0, historyIndex - 1);
       setHistoryIndex(newIndex);
-      setInput(history[newIndex]);
+      setInput(history.at(newIndex) || '');
     } else if (e.key === 'ArrowDown') {
       e.preventDefault();
       if (historyIndex === -1) return;
@@ -652,7 +652,7 @@ const Terminal = () => {
         setInput('');
       } else {
         setHistoryIndex(newIndex);
-        setInput(history[newIndex]);
+        setInput(history.at(newIndex) || '');
       }
     }
   }, [history, historyIndex]);

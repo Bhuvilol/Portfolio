@@ -18,9 +18,10 @@ function hexCorners(cx, cy, size) {
 
 function drawHex(ctx, cx, cy, size, alpha, glowAlpha) {
   const pts = hexCorners(cx, cy, size);
+  const [firstPoint, ...remainingPoints] = pts;
   ctx.beginPath();
-  ctx.moveTo(pts[0][0], pts[0][1]);
-  for (let i = 1; i < 6; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+  ctx.moveTo(firstPoint.at(0), firstPoint.at(1));
+  remainingPoints.forEach(([x, y]) => ctx.lineTo(x, y));
   ctx.closePath();
 
   if (glowAlpha > 0.01) {
