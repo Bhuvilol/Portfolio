@@ -19,9 +19,11 @@ const BootSequence = ({ onComplete }) => {
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    const timers = BOOT_LINES.map((line, i) =>
-      setTimeout(() => setVisibleLines(i + 1), line.delay)
-    );
+    const showLine = (lineNumber) => setVisibleLines(lineNumber);
+    const timers = BOOT_LINES.map((line, i) => {
+      const delay = Number.isFinite(line.delay) ? line.delay : 0;
+      return window.setTimeout(showLine, delay, i + 1);
+    });
     const hideTimer = setTimeout(() => {
       setHidden(true);
       setTimeout(() => onComplete?.(), 350);
