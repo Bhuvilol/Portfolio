@@ -47,7 +47,7 @@ const AnimatedProjectCard = ({ project, className, size = 'medium', minHeight = 
         }}
       />
       
-      <div className={`relative h-full w-full min-h-[220px] rounded-2xl bg-hacker-surface border transition-all duration-300 ease-in-out z-20 ${isHovered ? 'border-hacker-green/50' : 'border-hacker-border'}`}>
+      <div className={`relative h-full w-full rounded-2xl bg-hacker-surface border transition-all duration-300 ease-in-out z-20 ${isHovered ? 'border-hacker-green/50' : 'border-hacker-border'}`}>
         <div className="relative h-full w-full overflow-hidden rounded-2xl">
           <img 
             src={project.image} 

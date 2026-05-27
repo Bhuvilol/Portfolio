@@ -37,7 +37,7 @@ const Contact = () => {
   return (
     <section id="contact" className="py-12 px-6 pb-8">
       <SectionHeading>contact</SectionHeading>
-      <p className="mb-8 text-hacker-text text-base leading-relaxed">
+      <p className="mb-8 text-hacker-muted text-base leading-relaxed font-sans">
         Whether you're offering a gig, a collab, or just want to say "Hey hacker man!", I'm all ears (and eyes, and keyboards). Drop your message below.
       </p>
       

@@ -6,7 +6,7 @@ const WORKSHOPS = [
     id: '01',
     title: 'Odisha AI Symposium',
     org: 'SOA Campus-2',
-    role: 'Attendee',
+    role: 'Delegate',
     date: 'Dec 2025',
     desc: 'Two days of sessions from 40+ speakers on applied AI, ML pipeline systems, deployment challenges, and AI ethics. Real exposure to how research, industry, and policy intersect in AI innovation.',
   },
@@ -20,29 +20,29 @@ const WORKSHOPS = [
   {
     id: '03',
     title: 'Kodlama',
-    org: 'DSC ITER',
-    role: 'Workshop Lead',
-    desc: 'Multi-day developer tooling workshop covering Git, Linux, and the unspoken rules of writing code other humans can read.',
+    org: 'CNxITER',
+    role: 'Workshop member',
+    desc: '12 hour hackathon using latest AI tools — from Copilot to LangSmith. Mentored teams on debugging LLM outputs, and integrating AI into their projects.',
   },
   {
     id: '04',
-    title: 'AI Treasure Hunt — Techwiz',
-    org: 'Cloud Community Bhubaneswar',
-    role: 'Technical Lead',
-    desc: 'AI-themed treasure hunt across campus. Designed clues, deployed the puzzles, ran the leaderboard. No clues were leaked.',
+    title: 'Techwiz 2.0',
+    org: 'CNxITER',
+    role: 'Backend Lead',
+    desc: 'A technical quiz competition — handled the backend system for real-time scoring, question management, and live leaderboards.',
   },
   {
     id: '05',
     title: 'Tormenta',
-    org: 'Inter-college Tech Fest',
-    role: 'Event Coordinator',
-    desc: 'Cross-campus technical fest coordination — speaker logistics, schedule wrangling, and putting out (mostly metaphorical) fires.',
+    org: 'Developer Student Clubs',
+    role: 'Rules Committee',
+    desc: 'A Ideathon focused on business implementation and revenue models — managed the event logistics and evaluated 50+ submissions.',
   },
   {
     id: '06',
     title: 'Web3 & Agentic AI Workshops',
     org: 'ODISHA DAO',
-    role: 'Speaker & Mentor',
+    role: 'Speaker',
     desc: 'Hands-on sessions on Solidity, MetaMask integration, and agentic LLM workflows for student builders across multiple campuses.',
   },
 ];
@@ -53,7 +53,27 @@ const Workshops = () => (
     <p className="text-base text-hacker-muted max-w-3xl mb-10 leading-relaxed">
       Events I've organized or spoken at — reaching 1500+ students across DSC, ODISHA DAO, and Cloud Community Bhubaneswar.
     </p>
-    <ul className="space-y-4 text-hacker-text">
+    {/* Mobile: horizontal scroll */}
+    <div className="md:hidden -mx-6 px-6 overflow-x-auto snap-x snap-mandatory scrollbar-none">
+      <div className="flex gap-3 pb-3" style={{ width: 'max-content' }}>
+        {WORKSHOPS.map((w) => (
+          <div
+            key={w.id}
+            className="w-[270px] h-[200px] shrink-0 snap-start border border-hacker-border rounded-lg bg-hacker-surface/40 p-4 flex flex-col"
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <span className="font-mono text-hacker-green text-xs">[{w.id}]</span>
+              {w.date && <span className="font-mono text-hacker-muted text-[10px]">{w.date}</span>}
+            </div>
+            <strong className="font-mono text-hacker-text text-sm block mb-1">{w.title}</strong>
+            <span className="font-mono text-hacker-muted text-[10px] mb-2">{w.org} · {w.role}</span>
+            <p className="text-xs text-hacker-muted leading-relaxed flex-1 overflow-hidden line-clamp-4">{w.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+    {/* Desktop: vertical list */}
+    <ul className="hidden md:block space-y-4 text-hacker-text">
       {WORKSHOPS.map((w) => (
         <li
           key={w.id}

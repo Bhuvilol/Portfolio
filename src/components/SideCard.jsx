@@ -48,7 +48,7 @@ const SideCard = () => {
     <div className="h-full flex flex-col gap-3 font-mono text-xs overflow-hidden">
 
       {/* Easter egg hints */}
-      <div className="bg-hacker-surface border border-hacker-border rounded-lg px-4 py-2.5 shrink-0">
+      <div className="bg-hacker-surface border border-hacker-green/20 rounded-lg px-4 py-2.5 shrink-0" style={{ boxShadow: '0 0 0 1px rgba(0,255,153,0.06) inset' }}>
         <div className="flex items-center gap-2 mb-2">
           <FiTerminal className="w-3 h-3 text-hacker-green" />
           <span className="text-hacker-muted text-[10px]">// easter eggs — click to copy</span>
@@ -70,7 +70,7 @@ const SideCard = () => {
       </div>
 
       {/* Blog posts */}
-      <div className="bg-hacker-surface border border-hacker-border rounded-lg px-4 py-4 flex flex-col overflow-hidden flex-1 min-h-0">
+      <div className="bg-hacker-surface border border-hacker-green/20 rounded-lg px-4 py-4 flex flex-col overflow-hidden flex-1 min-h-0" style={{ boxShadow: '0 0 0 1px rgba(0,255,153,0.06) inset' }}>
         <div className="flex items-center justify-between mb-3 shrink-0">
           <div className="flex items-center gap-2">
             <FiFileText className="w-3.5 h-3.5 text-hacker-green" />
