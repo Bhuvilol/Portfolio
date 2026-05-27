@@ -17,7 +17,7 @@ const FloatingDock = () => {
       id: 'resume',
       name: 'Resume',
       icon: <FaFileAlt className="w-5 h-5" />,
-      url: 'https://drive.google.com/file/d/1Gwxy5HHKSwrNUv2az55iD0L3JAKV29WE/view?usp=sharing',
+      url: '/resume_ai_ml.pdf',
     },
     {
       id: 'email',
@@ -60,6 +60,11 @@ const FloatingDock = () => {
         return false;
       }
     };
+
+    if (url.startsWith('/')) {
+      window.open(url, '_blank');
+      return;
+    }
 
     if (!isValidUrl(url)) {
       console.error('Invalid URL:', url);

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <title>segfault — bhuvi.online</title>
+    <style>
+      :root {
+        --bg: #0a0a0a;
+        --text: #e5e5e5;
+        --muted: #6b7280;
+        --green: #00ff88;
+        --border: #1f2937;
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0; padding: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'JetBrains Mono', monospace;
+        min-height: 100vh;
+      }
+      .wrap {
+        min-height: 100vh;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        padding: 2rem; text-align: left;
+      }
+      .box {
+        max-width: 640px; width: 100%;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 2rem;
+        background: rgba(20, 20, 20, 0.5);
+      }
+      h1 { color: var(--green); font-size: 1.4rem; margin: 0 0 1rem; }
+      .glitch { font-size: 4rem; color: var(--green); margin: 0 0 0.5rem; letter-spacing: 4px; }
+      .line { margin: 0.4rem 0; font-size: 0.9rem; }
+      .muted { color: var(--muted); }
+      .prompt::before { content: '$ '; color: var(--muted); }
+      a.cta {
+        display: inline-block; margin-top: 1.5rem;
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--green);
+        color: var(--green);
+        text-decoration: none; border-radius: 4px;
+        font-size: 0.85rem;
+        transition: background 0.2s;
+      }
+      a.cta:hover { background: rgba(0, 255, 136, 0.1); }
+      .cursor {
+        display: inline-block; width: 8px; height: 16px;
+        background: var(--green); vertical-align: middle;
+        animation: blink 1s infinite;
+      }
+      @keyframes blink { 50% { opacity: 0; } }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="box">
+        <div class="glitch">404</div>
+        <h1>segfault: section not found at 0x404</h1>
+        <div class="line prompt"><span class="muted">cat /requested/page</span></div>
+        <div class="line muted">  → file not found in tree</div>
+        <div class="line prompt"><span class="muted">stack trace:</span></div>
+        <div class="line muted">  at visitor.click() : line ?</div>
+        <div class="line muted">  at bhuvi.portfolio.router : null</div>
+        <div class="line">  <span style="color: var(--green);">[ recovery ]</span> redirecting to home...<span class="cursor"></span></div>
+        <a class="cta" href="/">./back_home.sh</a>
+      </div>
+    </div>
+  </body>
+</html>

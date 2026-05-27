@@ -325,6 +325,117 @@ function processCommand(input, commandHistory) {
     case 'clear':
       return 'CLEAR';
 
+    // ── Easter eggs ──────────────────────────────────────────────
+    case 'hack':
+    case 'hack_nasa':
+    case 'hackNasa': {
+      const target = args[0] || 'nasa';
+      return [
+        { type: 'info', text: '' },
+        { type: 'root', text: `  [*] Initiating hack sequence on ${target}.gov...` },
+        { type: 'muted', text: '  [*] Scanning for open ports...' },
+        { type: 'muted', text: '  [*] Found CVE-2024-4ever... exploiting...' },
+        { type: 'muted', text: '  [*] Bypassing firewall... ████████░░ 80%' },
+        { type: 'root', text: '  [!] FBI has entered the chat.' },
+        { type: 'root', text: '  [!] Three black SUVs spotted outside.' },
+        { type: 'green', text: '  [✓] Just kidding. Please do not actually do this.' },
+        { type: 'info', text: '' },
+      ];
+    }
+
+    case 'mine':
+    case 'mine_bitcoin':
+    case 'bitcoin':
+      return [
+        { type: 'info', text: '' },
+        { type: 'green', text: '  [*] Starting Bitcoin miner...' },
+        { type: 'muted', text: '  [*] CPU usage: 100% ████████████ done' },
+        { type: 'muted', text: '  [*] Mining rate: 0.000000001 BTC/year' },
+        { type: 'muted', text: '  [*] Estimated time to 1 BTC: 1,000,000,000 years' },
+        { type: 'root', text: '  [!] Your laptop fan has filed for divorce.' },
+        { type: 'muted', text: '  Tip: try Web3 dev instead, pays better.' },
+        { type: 'info', text: '' },
+      ];
+
+    case 'sudo_rm_rf':
+    case 'rm': {
+      const isRf = args.includes('-rf') || args.includes('-r') || args.includes('-f');
+      if (isRf) {
+        return [
+          { type: 'info', text: '' },
+          { type: 'root', text: '  [!] Deleting everything...' },
+          { type: 'muted', text: '  Removing /projects... done' },
+          { type: 'muted', text: '  Removing /memories... done' },
+          { type: 'muted', text: '  Removing /social_life... done (was already empty)' },
+          { type: 'muted', text: '  Removing /sleep... done' },
+          { type: 'green', text: '  [✓] Just kidding. Nothing was harmed.' },
+          { type: 'info', text: '' },
+        ];
+      }
+      return [{ type: 'root', text: `  rm: missing operand` }];
+    }
+
+    case 'git':
+      if (args[0] === 'push' && args.includes('--force')) {
+        return [
+          { type: 'root', text: '  [!] Force pushing to main...' },
+          { type: 'root', text: '  [!] Overwriting teammates work...' },
+          { type: 'root', text: '  [!] Senior dev is typing...' },
+          { type: 'muted', text: '  Please do not do this in real life.' },
+        ];
+      }
+      if (args[0] === 'blame') {
+        return [
+          { type: 'muted', text: '  Running git blame...' },
+          { type: 'root', text: '  Every line: bhuvi <bhabeshcse@gmail.com>' },
+          { type: 'green', text: '  At least you know who to call.' },
+        ];
+      }
+      return [{ type: 'root', text: `  git: '${args.join(' ')}' is not a git command` }];
+
+    case 'ls_la':
+    case 'sl': // classic typo easter egg
+      return [
+        { type: 'info', text: '' },
+        { type: 'green', text: '  🚂 choo choo! (you meant ls, not sl)' },
+        { type: 'info', text: '' },
+      ];
+
+    case 'hello':
+    case 'hi':
+      return [
+        { type: 'green', text: '  Hello, fellow human (or bot).' },
+        { type: 'muted', text: '  Try "whoami" or "help" to get started.' },
+      ];
+
+    case 'coffee':
+    case 'brew':
+      return [
+        { type: 'info', text: '' },
+        { type: 'green', text: '  ☕  Brewing...' },
+        { type: 'muted', text: '  All good code is written on coffee.' },
+        { type: 'muted', text: '  Current intake today: ∞ cups.' },
+        { type: 'info', text: '' },
+      ];
+
+    case 'matrix':
+      return [
+        { type: 'green', text: '  Wake up, Neo...' },
+        { type: 'muted', text: '  The Matrix has you.' },
+        { type: 'green', text: '  Follow the white rabbit.' },
+        { type: 'muted', text: '  (No actual matrix rain, sorry. Try Konami code.)' },
+      ];
+
+    case 'vim':
+      return [
+        { type: 'muted', text: '  Opening vim...' },
+        { type: 'root', text: '  [!] You are now trapped.' },
+        { type: 'muted', text: '  Hint: :q! to escape (good luck).' },
+      ];
+
+    case '42':
+      return [{ type: 'green', text: '  The answer to life, the universe, and everything.' }];
+
     default:
       return [
         { type: 'root', text: `  bash: ${cmd}: command not found` },
@@ -451,7 +562,7 @@ const Terminal = () => {
   }, [history, historyIndex]);
 
   return (
-    <div className="rounded-xl overflow-hidden flex flex-col max-h-[calc(100vh-6rem)] border border-[#1a1a2e] bg-[#0c0c14] shadow-[0_0_0_1px_rgba(0,255,153,0.05),0_8px_32px_-4px_rgba(0,0,0,0.8)]">
+    <div className="h-full rounded-xl overflow-hidden flex flex-col border border-[#1a1a2e] bg-[#0c0c14] shadow-[0_0_0_1px_rgba(0,255,153,0.05),0_8px_32px_-4px_rgba(0,0,0,0.8)]">
 
       {/* ── Title bar ── */}
       <div className="flex items-center justify-between px-4 py-3 bg-[#111119] border-b border-[#1a1a2e] select-none shrink-0">
