@@ -16,10 +16,8 @@ const NowBlock = () => (
       </div>
       <ul className="space-y-1.5">
         {NOW_ITEMS.map((item) => (
-          <li key={item.label} className="flex flex-col sm:flex-row sm:gap-3">
-            <span className="text-hacker-green w-20 shrink-0">
-              [{item.label}]
-            </span>
+          <li key={item.label} style={{ display: 'grid', gridTemplateColumns: '7rem 1fr', gap: '0.5rem' }}>
+            <span className="text-hacker-green shrink-0">[{item.label}]</span>
             <span className="text-hacker-text">{item.value}</span>
           </li>
         ))}
