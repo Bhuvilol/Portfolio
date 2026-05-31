@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { FiExternalLink, FiTerminal, FiFileText } from 'react-icons/fi';
 
 const MEDIUM_USER = 'bhuvism003';
-const FEED_URL = '/api/medium-feed';
+const FEED_URL = '/medium-posts.json';
 
 const EASTER_EGGS = [
   { cmd: 'hack nasa',       hint: 'initiate hack sequence' },
@@ -22,17 +22,8 @@ const SideCard = () => {
 
   useEffect(() => {
     fetch(FEED_URL)
-      .then(r => r.text())
-      .then(text => {
-        const parser = new DOMParser();
-        const xml = parser.parseFromString(text, 'text/xml');
-        const items = Array.from(xml.querySelectorAll('item'));
-        setPosts(items.slice(0, 5).map(item => ({
-          title: item.querySelector('title')?.textContent || 'Untitled',
-          href: item.querySelector('link')?.textContent || `https://medium.com/@${MEDIUM_USER}`,
-          date: new Date(item.querySelector('pubDate')?.textContent).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
-        })));
-      })
+      .then(r => r.json())
+      .then(posts => setPosts(posts))
       .catch(() => {})
       .finally(() => setLoadingPosts(false));
   }, []);
