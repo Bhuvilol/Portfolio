@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { FiExternalLink, FiTerminal, FiFileText } from 'react-icons/fi';
 
 const MEDIUM_USER = 'bhuvism003';
-const FEED_URL = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://medium.com/feed/@${MEDIUM_USER}`)}`;
+const FEED_URL = '/api/medium-feed';
 
 const EASTER_EGGS = [
   { cmd: 'hack nasa',       hint: 'initiate hack sequence' },
@@ -22,10 +22,10 @@ const SideCard = () => {
 
   useEffect(() => {
     fetch(FEED_URL)
-      .then(r => r.json())
-      .then(data => {
+      .then(r => r.text())
+      .then(text => {
         const parser = new DOMParser();
-        const xml = parser.parseFromString(data.contents, 'text/xml');
+        const xml = parser.parseFromString(text, 'text/xml');
         const items = Array.from(xml.querySelectorAll('item'));
         setPosts(items.slice(0, 5).map(item => ({
           title: item.querySelector('title')?.textContent || 'Untitled',
